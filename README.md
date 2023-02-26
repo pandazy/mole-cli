@@ -33,3 +33,40 @@ And run the project by `yarn install && yarn <package.json's script name>` (in t
 from a Docker container installed with Node.js and Yarn.
 
 The docker container uses [this image](https://hub.docker.com/layers/jszhengyq/dermis/latest/images/sha256:dea2da756e951741f919069e16145ce806f5ab1107ed66d4f8084fd2f60a28b8)
+
+-------------------
+
+## Demo:
+### Before running the command:
+
+![image](https://user-images.githubusercontent.com/519653/221444157-5d1f0966-92a8-41b4-8f1b-3c74fcf3246f.png)
+
+What package.json looks like
+```
+{
+  "name": "mole-config-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}
+```
+
+### Install mole-cli
+![image](https://user-images.githubusercontent.com/519653/221444255-9ff79b80-ad09-4b6c-a4e2-1b924a94722f.png)
+
+### Run the command `mole test`
+
+![image](https://user-images.githubusercontent.com/519653/221444544-fa846932-d4d6-4e81-9de9-af19fe3b1a51.png)
+
+![image](https://user-images.githubusercontent.com/519653/221444588-b613b965-cb40-4db3-a2b9-fe9c708e1cf2.png)
+
+
+
+
+
+
+
+
+
