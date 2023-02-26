@@ -62,6 +62,8 @@ What package.json looks like
 
 ![image](https://user-images.githubusercontent.com/519653/221444588-b613b965-cb40-4db3-a2b9-fe9c708e1cf2.png)
 
+### Now the repository is like this
+![image](https://user-images.githubusercontent.com/519653/221444754-f5fda96e-9eb3-41a5-b2eb-8446d17d8314.png)
 
 
 
