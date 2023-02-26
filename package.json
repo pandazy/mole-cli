@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"bin": {
 		"mole-yarn": "./bin/go-yarn",
-		"mole-on": "./bin/on.mjs"
+		"mole-on": "./bin/on.mjs",
+		"mole": "./bin/mole"
 	},
 	"repository": {
 		"type": "git",
