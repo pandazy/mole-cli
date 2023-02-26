@@ -65,6 +65,13 @@ What package.json looks like
 ### Now the repository is like this
 ![image](https://user-images.githubusercontent.com/519653/221444754-f5fda96e-9eb3-41a5-b2eb-8446d17d8314.png)
 
+### It runs in a Docker container
+![image](https://user-images.githubusercontent.com/519653/221444940-14a2812d-64f9-406f-811b-92b1286becdb.png)
+
+### node_modules is stored in a Docker volume (not in the project repository, otherwise it hurts the performance)
+![image](https://user-images.githubusercontent.com/519653/221444892-924f4a14-f687-489e-a42a-e1f433478224.png)
+
+
 
 
 
