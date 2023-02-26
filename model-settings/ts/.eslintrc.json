@@ -1,0 +1,3 @@
+{
+	"extends": "@pandazy/eslint-config-mole"
+}

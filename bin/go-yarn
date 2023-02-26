@@ -1,0 +1,53 @@
+#!/bin/bash
+
+yarn="$1" # yarn command to run in the docker container, e.g., start, build, test
+
+# show the usage of this script
+show_usage() {
+  echo "Usage: $0 <yarn_comand>"
+  echo "Example:"
+  echo " $0 start"
+}
+
+# read the config file and run the docker container with the current directory as the working directory for Node.js
+read_config_and_run() {
+  flname="$1"
+  echo "You are using Docker to run this command: yarn $yarn"
+  echo "Reading running config from $flname..."
+  source "$flname"
+  echo "Ports: $EX_PORT:$IN_PORT"
+  docker run --rm -ti --env YARN=$yarn -v $FOLDER:/dermis -v $NODE_MODULES_VOLUME_NAME:/dermis/node_modules -v ~/.npmrc:/root/.npmrc -p $EX_PORT:$IN_PORT jszhengyq/dermis
+}
+
+filename=".pandazy-dev"
+
+if test -z "$yarn"; then
+  show_usage
+  exit
+fi
+
+if ! command -v docker &>/dev/null; then
+  echo "Docker could not be found. Please install Docker."
+  exit
+fi
+
+if test -f "$filename"; then
+  read_config_and_run "$filename"
+else
+  echo "Running config $filename does not exist. Creating..."
+
+  # Get the current directory path
+  repo_path=$(pwd)
+
+  # Get the base name of the current directory path
+  repo_name=$(basename "$repo_path")
+
+  node_modules_volume_name="${repo_name}_nmdl"
+
+  echo "Saving running config to $filename..."
+  echo "FOLDER=$repo_path" >>"$filename"
+  echo "NODE_MODULES_VOLUME_NAME=$node_modules_volume_name" >>"$filename"
+  echo "EX_PORT=3000" >>"$filename"
+  echo "IN_PORT=3000" >>"$filename"
+  read_config_and_run "$filename"
+fi

@@ -1,0 +1,9 @@
+{
+  "extends": "@pandazy/mole-config/tsconfig.json",
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}
