@@ -14,5 +14,5 @@ if test -z "$yarn"; then
   exit
 fi
 
-mole-on
+mole-on $@
 mole-yarn $yarn
