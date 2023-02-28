@@ -1,7 +1,10 @@
 # mole-cli
 
 ## Prerequisite:
-
+- Update `~/.npmrc`, add the following code
+```
+@pandazy:registry=https://npm.pkg.github.com
+```
 -   [Docker](https://www.docker.com/)
 -   [Yarn](https://yarnpkg.com/)
 
