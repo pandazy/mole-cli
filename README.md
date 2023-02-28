@@ -71,7 +71,7 @@ What package.json looks like
 ```
 
 ### Install mole-cli
-![image](https://user-images.githubusercontent.com/519653/221444255-9ff79b80-ad09-4b6c-a4e2-1b924a94722f.png)
+![image](https://user-images.githubusercontent.com/519653/221909241-e4395227-1968-482d-b0c3-a5e9db9ae5b8.png)
 
 ### Run the command `mole -c "yarn test" -n`
 
