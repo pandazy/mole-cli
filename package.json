@@ -1,32 +1,31 @@
 {
-	"name": "@pandazy/mole-cli",
-	"version": "0.1.16",
-	"description": "Shell command helpers",
-	"main": "index.js",
-	"bin": {
-		"mole-yarn": "./bin/go-yarn",
-		"mole-on": "./bin/on.mjs",
-		"mole": "./bin/mole"
-	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/pandazy/mole-cli.git"
-	},
-	"keywords": [
-		"Node, CLI, Shell, Command, Helpers"
-	],
-	"author": "Martin Zheng",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/pandazy/mole-cli/issues"
-	},
-	"homepage": "https://github.com/pandazy/mole-cli#readme",
-	"dependencies": {
-		"chalk": "5.2.0",
-		"yargs": "17.7.1"
-	},
-	"type": "module"
+  "name": "@pandazy/mole-cli",
+  "version": "0.1.16",
+  "description": "Shell command helpers",
+  "main": "index.js",
+  "bin": {
+    "mole": "./bin/mole.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pandazy/mole-cli.git"
+  },
+  "keywords": [
+    "Node, CLI, Shell, Command, Helpers"
+  ],
+  "author": "Martin Zheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pandazy/mole-cli/issues"
+  },
+  "homepage": "https://github.com/pandazy/mole-cli#readme",
+  "dependencies": {
+    "chalk": "5.2.0",
+    "dotenv": "16.0.3",
+    "yargs": "17.7.1"
+  },
+  "type": "module"
 }
