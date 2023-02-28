@@ -9,9 +9,7 @@ const args = process.argv.slice(2);
 
 const argv = yargs(args)
   .alias('n', 'new')
-  .describe('n', 'If specified, it will initialize development settings, including TypeScript, Jest, ESLint, etc.')
-  .alias('y', 'yarn-install')
-  .describe('y', 'If specified, it will run "yarn install" before running the command.')
+  .describe('n', 'If specified, it will initialize development settings, including TypeScript, Jest, ESLint, etc., install dependencies, and run the command')
   .alias('c', 'command')
   .string('c')
   .demandOption('c')
@@ -23,11 +21,10 @@ const argv = yargs(args)
   .usage('Usage: mole [-y][-n] -c <command>')
   .example('mole -c "yarn test"', 'Run "yarn test"')
   .example('mole -c -n "yarn test"', 'Initialize the settings and run "yarn test"')
-  .example('mole -y -c -n "yarn test"', 'Initialize the settings, run "yarn install" and run "yarn test"')
   .argv;
 
 if (argv.n) {
   initializeSettings();
 }
 
-runCommand(argv.c, argv.y);
+runCommand(argv.c, argv.n);
