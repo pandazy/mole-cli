@@ -5,7 +5,7 @@
     ```
     @pandazy:registry=https://npm.pkg.github.com
     ```
-if it doesn't exist
+    if it doesn't exist
 -   [Docker](https://www.docker.com/)
 -   [Yarn](https://yarnpkg.com/)
 
