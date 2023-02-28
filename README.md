@@ -17,7 +17,24 @@ yarn global add @pandazy/mole-cli
 
 ## Usage
 
-See `mole -h`
+```
+Usage: mole [-y][-n] -c <command>
+
+Options:
+  -n, --new           If specified, it will initialize development settings,
+                      including TypeScript, Jest, ESLint, etc.
+  -y, --yarn-install  If specified, it will run "yarn install" before running
+                      the command.
+  -c, --command       Command to run                         [string] [required]
+  -h, --help          Show help                                        [boolean]
+  -v, --version       Show version number                              [boolean]
+
+Examples:
+  mole -c "yarn test"        Run "yarn test"
+  mole -c -n "yarn test"     Initialize the settings and run "yarn test"
+  mole -y -c -n "yarn test"  Initialize the settings, run "yarn install" and run
+                             "yarn test"
+```
 
 ### Example
 ```
