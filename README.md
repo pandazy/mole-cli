@@ -2,9 +2,9 @@
 
 ## Prerequisite:
 - Update `~/.npmrc`, add the following code
-```
-@pandazy:registry=https://npm.pkg.github.com
-```
+    ```
+    @pandazy:registry=https://npm.pkg.github.com
+    ```
 if it doesn't exist
 -   [Docker](https://www.docker.com/)
 -   [Yarn](https://yarnpkg.com/)
