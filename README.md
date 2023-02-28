@@ -83,7 +83,7 @@ What package.json looks like
 ![image](https://user-images.githubusercontent.com/519653/221912103-952ff392-a8ec-4c53-a1ce-2844eb50530b.png)
 
 ### It runs in a Docker container
-![image](https://user-images.githubusercontent.com/519653/221444940-14a2812d-64f9-406f-811b-92b1286becdb.png)
+![image](https://user-images.githubusercontent.com/519653/221912714-22fe438c-c7f1-437f-be0e-7d21ac5d7cf1.png)
 
 ### node_modules is stored in a Docker volume (not in the project repository, otherwise it hurts the performance)
 ![image](https://user-images.githubusercontent.com/519653/221912221-08915c56-9292-4507-8488-60ff251c4417.png)
