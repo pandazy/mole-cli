@@ -71,22 +71,22 @@ What package.json looks like
 ```
 
 ### Install mole-cli
-![image](https://user-images.githubusercontent.com/519653/221909241-e4395227-1968-482d-b0c3-a5e9db9ae5b8.png)
+![image](https://user-images.githubusercontent.com/519653/221910873-7644b1b1-6235-434c-91d3-3d1b73a0fc68.png)
 
 ### Run the command `mole -c "yarn test" -n`
 
-![image](https://user-images.githubusercontent.com/519653/221444544-fa846932-d4d6-4e81-9de9-af19fe3b1a51.png)
+![image](https://user-images.githubusercontent.com/519653/221911842-0b14e64d-0833-4ef9-9bd6-9d0d5fab8a03.png)
 
 ![image](https://user-images.githubusercontent.com/519653/221444588-b613b965-cb40-4db3-a2b9-fe9c708e1cf2.png)
 
 ### Now the repository is like this
-![image](https://user-images.githubusercontent.com/519653/221444754-f5fda96e-9eb3-41a5-b2eb-8446d17d8314.png)
+![image](https://user-images.githubusercontent.com/519653/221912103-952ff392-a8ec-4c53-a1ce-2844eb50530b.png)
 
 ### It runs in a Docker container
 ![image](https://user-images.githubusercontent.com/519653/221444940-14a2812d-64f9-406f-811b-92b1286becdb.png)
 
 ### node_modules is stored in a Docker volume (not in the project repository, otherwise it hurts the performance)
-![image](https://user-images.githubusercontent.com/519653/221444892-924f4a14-f687-489e-a42a-e1f433478224.png)
+![image](https://user-images.githubusercontent.com/519653/221912221-08915c56-9292-4507-8488-60ff251c4417.png)
 
 
 
