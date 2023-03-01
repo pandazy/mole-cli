@@ -7,6 +7,7 @@ import packageJSON from './package.json' assert { type: 'json' };
 
 const args = process.argv.slice(2);
 
+const starterCmd = 'npx @pandazy/mole-cli';
 const argv = yargs(args)
   .alias('n', 'new')
   .describe('n', 'If specified, it will initialize development settings, including TypeScript, Jest, ESLint, etc., install dependencies, and run the command')
@@ -18,9 +19,9 @@ const argv = yargs(args)
   .alias('h', 'help')
   .alias('v', 'version')
   .version(packageJSON.version)
-  .usage('Usage: mole [-y][-n] -c <command>')
-  .example('npx @pandazy/mole-cli -c "yarn test"', 'Run "yarn test"')
-  .example('npx @pandazy/mole-cli -c -n "yarn test"', 'Initialize the settings and run "yarn test"')
+  .usage(`Usage: ${starterCmd} [-y][-n] -c <command>`)
+  .example(`${starterCmd} -c "yarn test"', 'Run "yarn test"`)
+  .example(`${starterCmd} -c -n "yarn test"`, 'Initialize the settings and run "yarn test"')
   .argv;
 
 if (argv.n) {
