@@ -19,8 +19,8 @@ const argv = yargs(args)
   .alias('v', 'version')
   .version(packageJSON.version)
   .usage('Usage: mole [-y][-n] -c <command>')
-  .example('mole -c "yarn test"', 'Run "yarn test"')
-  .example('mole -c -n "yarn test"', 'Initialize the settings and run "yarn test"')
+  .example('npx @pandazy/mole-cli -c "yarn test"', 'Run "yarn test"')
+  .example('npx @pandazy/mole-cli -c -n "yarn test"', 'Initialize the settings and run "yarn test"')
   .argv;
 
 if (argv.n) {
