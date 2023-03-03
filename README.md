@@ -7,6 +7,11 @@
 
 ## Usage
 
+```bash
+yarn global add @pandazy/mole-cli
+```
+
+
 ```
 Usage: mole [-y][-n] -c <command>
 
