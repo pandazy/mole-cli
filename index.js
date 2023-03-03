@@ -23,6 +23,13 @@ const argv = yargs(args)
       ' and run the command',
     alias: 'new'
   })
+  .option('bt', {
+    type: 'string',
+    default: 'lib',
+    describe: 'The boilerplate type to use',
+    alias: 'boilerplateType',
+    choices: ['lib', 'fe'],
+  })
   .option('spc', {
     type: 'boolean',
     default: false,
@@ -41,7 +48,7 @@ const argv = yargs(args)
   .argv;
 
 if (argv.n) {
-  initializeSettings();
+  initializeSettings(argv.bt);
 }
 
 runCommand(argv.c, {
