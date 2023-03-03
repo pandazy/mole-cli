@@ -5,7 +5,6 @@
 	"main": "index.js",
 	"bin": {
 		"mole": "./index.js",
-		"up-deps": "./up-deps.js",
 		"prt-nm": "./prt-nm"
 	},
 	"publishConfig": {
