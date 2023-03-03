@@ -7,7 +7,7 @@ import getVersion from './lib/get-version.js';
 
 const args = process.argv.slice(2);
 
-const starterCmd = 'npx @pandazy/mole-cli';
+const starterCmd = 'mole';
 const argv = yargs(args)
   .option('c', {
     type: 'string',
