@@ -3,7 +3,10 @@
 	"version": "0.3.4",
 	"description": "Shell command helpers",
 	"main": "index.js",
-	"bin": "./index.js",
+	"bin": {
+		"mole": "./index.js",
+		"prt-nm": "./prt-nm"
+	},
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com"
 	},
