@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import findMissingPackagesInVolume from "./lib/find-missing-packages-in-volume.js";
+import findMissingPackagesInVolume from "./lib/has-missing-packages-in-volume.js";
 
 console.log(findMissingPackagesInVolume());
