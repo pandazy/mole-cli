@@ -23,6 +23,10 @@ const argv = yargs(args)
       ' and run the command',
     alias: 'new'
   })
+  .option('noPackageCheck', {
+    default: false,
+    describe: 'If specified, it will skip the check for missing node modules',
+  })
   .option('h', {
     default: false,
     alias: 'help',
@@ -30,6 +34,7 @@ const argv = yargs(args)
   .option('v', {
     type: 'boolean',
     default: false,
+    alias: 'version',
   })
   .version(getVersion())
   .usage(`Usage: ${starterCmd} [-y][-n] -c <command>`)
@@ -42,4 +47,6 @@ if (argv.n) {
   initializeSettings();
 }
 
-runCommand(argv.c, argv.n);
+runCommand(argv.c, {
+  isNew: argv.n,
+});

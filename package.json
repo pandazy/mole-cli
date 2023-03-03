@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"bin": {
 		"mole": "./index.js",
-		"mole-modules": "./prt-nm"
+		"mole-modules": "./prt-nm",
+		"mole-find": "./new-lib.js"
 	},
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com"
