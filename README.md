@@ -8,7 +8,7 @@
 ## Usage
 
 ```
-Usage: npx @pandazy/mole-cli [-y][-n] -c <command>
+Usage: mole [-y][-n] -c <command>
 
 Options:
   -n, --new      If specified, it will initialize development settings,
@@ -19,15 +19,15 @@ Options:
   -v, --version  Show version number                                   [boolean]
 
 Examples:
-  npx @pandazy/mole-cli -c "yarn test"', 'Run "yarn test"
-  npx @pandazy/mole-cli -c -n "yarn test"   Initialize the settings and run
+  mole -c "yarn test"', 'Run "yarn test"
+  mole -c -n "yarn test"   Initialize the settings and run
                                             "yarn test"
 ```
 
 ### Example
 
 ```
-npx @pandazy/mole-cli -c "yarn test" -n
+mole -c "yarn test" -n
 
 // as long as there is "./src/*.spec.ts" in the project
 ```
@@ -61,7 +61,7 @@ What package.json looks like
 }
 ```
 
-### Run the command `npx @pandazy/mole-cli -c "yarn test" -n`
+### Run the command `mole -c "yarn test" -n`
 
 ![image](https://user-images.githubusercontent.com/519653/221911842-0b14e64d-0833-4ef9-9bd6-9d0d5fab8a03.png)
 
