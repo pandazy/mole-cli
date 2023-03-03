@@ -4,7 +4,9 @@
 	"description": "Shell command helpers",
 	"main": "index.js",
 	"bin": {
-		"mole": "./index.js"
+		"mole": "./index.js",
+		"up-deps": "./up-deps.js",
+		"prt-nm": "./prt-nm"
 	},
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com"
