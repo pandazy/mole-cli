@@ -1,6 +1,6 @@
 {
   "name": "@pandazy/mole-cli",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "Shell command helpers",
   "main": "./index.js",
   "bin": {
@@ -53,8 +53,8 @@
   "dependencies": {
     "chalk": "4",
     "dotenv": "16.0.3",
-    "yargs": "17.7.1",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.0",
+    "yargs": "17.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
