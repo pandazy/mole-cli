@@ -1,6 +1,6 @@
 {
   "name": "@pandazy/mole-cli",
-  "version": "0.4.9",
+  "version": "0.4.8",
   "description": "Shell command helpers",
   "main": "./dist/src/index.js",
   "bin": {
@@ -16,7 +16,7 @@
     "test:prepare": "yarn lint && yarn clean && yarn test:clear-cache",
     "test:new": "yarn test:prepare && yarn test",
     "lint": "yarn eslint 'src/**' --ext .ts --fix",
-    "release": "yarn lint && yarn clean && yarn publish && git clean -fd"
+    "release": "yarn lint && yarn clean && yarn test && yarn publish && git clean -fd"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

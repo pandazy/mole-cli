@@ -20,7 +20,7 @@
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
     /* Module Resolution Options */
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "types": [
