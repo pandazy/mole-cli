@@ -27,5 +27,5 @@ module.exports = {
     "indent": ["error", 2],
     "import/extensions": "off",
     "max-len": ["error", { "code": 120, ignoreComments: true }],
-  },
+  }
 };
