@@ -18,12 +18,10 @@ tsconfig.build.json
 
 # Test settings
 jest.config.js
+jest.config.ts
 
 # Coverage directory used by tools like istanbul
 coverage
-
-
-
 
 # Dependency directories
 node_modules/
