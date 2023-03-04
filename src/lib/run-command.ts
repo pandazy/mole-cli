@@ -1,13 +1,22 @@
 import chalk from "chalk";
 import { execSync } from 'child_process';
-import askYesNo from "./ask-yes-no.js";
-import { hasYarnLock } from "./config-utils.js";
-import { DevDeps, DevDepsNonGatsby } from "./dep-list.constant.js";
-import { readDocker, writeDocker } from "./docker-cofig.js";
-import hasMissingPackagesInVolume from "./has-missing-packages-in-volume.js";
-import removeYarnLock from "./remove-yarn-lock.js";
+import askYesNo from "./ask-yes-no";
+import { hasYarnLock } from "./config-utils";
+import { DevDepGatsby, DevDepsMole } from "./dep-list-constant";
+import { DockerConfig, readDocker, writeDocker } from "./docker-config";
+import hasMissingPackagesInVolume from "./has-missing-packages-in-volume";
+import removeYarnLock from "./remove-yarn-lock";
 
-function justRunCommand(cmd, pandazyDev, initialScript = '') {
+function addNewDockerConfig(): DockerConfig {
+  writeDocker();
+  return readDocker() as DockerConfig;
+}
+
+function justRunCommand(
+  cmd: string,
+  pandazyDev: DockerConfig,
+  initialScript = ''
+): void {
   const { FOLDER, NODE_MODULES_VOLUME_NAME, EX_PORT, IN_PORT } = pandazyDev;
 
   console.log(chalk.blue.bold(`Running command:`));
@@ -31,39 +40,27 @@ function justRunCommand(cmd, pandazyDev, initialScript = '') {
   console.log(chalk.blue.bold(`------------------`));
 }
 
-function handleError(err) {
-  console.log(err);
-  console.log(chalk.red.bold(`Error: ${err}`));
-}
-
-function runCommandWithContainerSettings(cmd, initialScript = '') {
+function runCommandWithContainerSettings(cmd: string, initialScript = ''): void {
   const dockerConf = readDocker();
-
-  if (dockerConf) {
-    justRunCommand(cmd, dockerConf, initialScript);
-    return Promise.resolve();
-  }
-
-  return askYesNo('Container settings are missing. Do you want to initialize them now? (y/n) ')
-    .then((isConfirmed) => {
-      if (isConfirmed) {
-        writeDocker();
-        return justRunCommand(cmd, readDocker(), initialScript);
-      }
-      throw new Error('Container settings are missing.');
-    })
-    .catch(handleError);
+  const checkedConfig = dockerConf || addNewDockerConfig();
+  justRunCommand(cmd, checkedConfig, initialScript);
 }
 
-export default function runCommand(cmd, options = {}) {
+export type RunOptionKey = 'isNew' | 'isGatsby' | 'skipPackageCheck';
+
+interface RunCommandOptions {
+  isNew?: boolean;
+  isGatsby?: boolean;
+  skipPackageCheck?: boolean;
+}
+
+export default function runCommand(cmd: string, options: RunCommandOptions = {}): Promise<void> {
   const { isNew, isGatsby, skipPackageCheck } = options;
-  const deps = [
-    ...DevDeps,
-    ...isGatsby ? [] : DevDepsNonGatsby,
-  ];
+  const deps = isGatsby ? DevDepGatsby : DevDepsMole;
   const foundYarnLock = hasYarnLock();
   const addPackScript = `yarn --dev add ${deps.join(' ')}`;
-  const runAsUsual = () => runCommandWithContainerSettings(cmd, isNew ? addPackScript : '')
+  const runAsUsual: () => Promise<void> = () => Promise.resolve()
+    .then(() => runCommandWithContainerSettings(cmd, isNew ? addPackScript : ''));
   if (skipPackageCheck) {
     console.log(chalk.yellow.bold('Skipping node-module integrity check...'));
   }
@@ -72,7 +69,7 @@ export default function runCommand(cmd, options = {}) {
     !skipPackageCheck && (
       !foundYarnLock || hasMissingPackagesInVolume(isGatsby)
     )) {
-    return askYesNo('Node modules are not properly installed. Do you want to install them now? (y/n) ')
+    return askYesNo('Node modules are not properly installed. Do you want to install them now? (Y/n) ')
       .then((isConfirmed) => {
         if (isConfirmed) {
           removeYarnLock();
@@ -87,3 +84,4 @@ export default function runCommand(cmd, options = {}) {
   }
   return runAsUsual();
 }
+

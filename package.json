@@ -1,33 +1,87 @@
 {
-	"name": "@pandazy/mole-cli",
-	"version": "0.4.3",
-	"description": "Shell command helpers",
-	"main": "index.js",
-	"bin": {
-		"mole": "./index.js",
-		"mole-modules": "./prt-nm",
-		"mole-find": "./new-lib.js"
-	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/pandazy/mole-cli.git"
-	},
-	"keywords": [
-		"Node, CLI, Shell, Command, Helpers"
-	],
-	"author": "Martin Zheng",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/pandazy/mole-cli/issues"
-	},
-	"homepage": "https://github.com/pandazy/mole-cli#readme",
-	"dependencies": {
-		"chalk": "5.2.0",
-		"dotenv": "16.0.3",
-		"yargs": "17.7.1"
-	},
-	"type": "module"
+  "name": "@pandazy/mole-cli",
+  "version": "0.4.3",
+  "description": "Shell command helpers",
+  "main": "./index.js",
+  "bin": {
+    "mole": "./index.js",
+    "mole-modules": "./bin/prt-nm"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "yarn clean && tsc --build tsconfig.build.json",
+    "clean": "rm -rf dist && rm -rf coverage",
+    "test:clear-cache": " jest --clearCache",
+    "prepare": "yarn build",
+    "test:prepare": "yarn lint && yarn clean && yarn test:clear-cache",
+    "test:new": "yarn test:prepare && yarn test",
+    "lint": "yarn eslint 'src/**' --ext .ts --fix",
+    "release": "yarn lint && yarn publish && git clean -fd"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pandazy/mole-cli.git"
+  },
+  "keywords": [
+    "Node, CLI, Shell, Command, Helpers"
+  ],
+  "author": "Martin Zheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pandazy/mole-cli/issues"
+  },
+  "homepage": "https://github.com/pandazy/mole-cli#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "chalk": "4",
+    "dotenv": "16.0.3",
+    "yargs": "17.7.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@pandazy/eslint-config-mole": "^0.1.2",
+    "@pandazy/mole-config": "^0.1.8",
+    "@types/jest": "^29.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.10.2",
+    "husky": "^8.0.3",
+    "jest": "^29.4.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.4",
+    "ts-jest": "^29.0.5",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
+  }
 }

@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es6",
+    "module": "CommonJS",
+    "importHelpers": true,
+    "lib": [
+      "dom",
+      "es2021"
+    ],
+    "declaration": true,
+    "sourceMap": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    /* Additional Checks */
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Module Resolution Options */
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "types": [
+      "jest",
+      "node"
+    ],
+    /*
+      File location based options 
+      They will not work in a node_modules folder
+    */
+    
+    "outDir": "dist",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./dist/**/*",
+  ]
+}

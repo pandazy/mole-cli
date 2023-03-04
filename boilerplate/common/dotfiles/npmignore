@@ -25,4 +25,4 @@ node_modules/
 .npm
 
 # pandazy developer's personal settings
-.pandazy-dev
+.pandazy

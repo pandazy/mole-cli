@@ -1,3 +1,4 @@
 dist
 node_modules
 *.ts.snap
+index.js

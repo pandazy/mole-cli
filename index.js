@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+const yargs = require('yargs/yargs');
 
-import yargs from 'yargs/yargs';
-import runCommand from './lib/run-command.js';
-import initializeSettings from './lib/initialize-settings.js';
-import getVersion from './lib/get-version.js';
+const runCommand = require('./dist/src/lib/run-command.js').default;
+const initializeSettings = require('./dist/src/lib/initialize-settings.js').default;
+const getVersion = require('./dist/src/lib/get-version.js').default;
 
 const args = process.argv.slice(2);
 

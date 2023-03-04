@@ -1,18 +1,18 @@
 import readline from 'readline';
 import chalk from 'chalk';
 
-export default function askYesNo(question) {
+export default function askYesNo(question: string): Promise<boolean> {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
-  return new Promise((resolve) => {
+  return new Promise((resolve, rejects) => {
     rl.question(chalk.blue.bold(`${question} (Y/n)`), (answer) => {
       const ans = (answer || '').toLowerCase();
-      const actualAns = ans ? ans : 'y';
+      const actualAns = ans ?? 'y';
       if (['y', 'n'].indexOf(actualAns) === -1) {
         rl.close();
-        rejects('Invalid answer');
+        rejects(new Error('Invalid answer'));
         return;
       }
       rl.close();

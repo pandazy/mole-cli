@@ -1,17 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import clearLastLineAndPrint from './print-helpers.js';
+import { execSync } from 'child_process';
+import clearLastLineAndPrint from './print-helpers';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const CodeDirName = execSync('pwd').toString().trim();
 
 const destDir = path.resolve(process.cwd());
 
-export default function copyBoilerplateSettings(packName) {
-  const srcParentDir = path.resolve(__dirname, `../boilerplate/${packName}`);
+export type PackName = 'new-lib-root' | 'new-fe-root' | 'common';
+
+export default function copyBoilerplateSettings(packName: PackName): void {
+  const srcParentDir = path.resolve(CodeDirName, `./boilerplate/${packName}`);
   fs.readdirSync(srcParentDir, { withFileTypes: true }).forEach(srcDir => {
     if (srcDir.isDirectory()) {
       fs.readdirSync(path.join(srcParentDir, srcDir.name)).forEach(file => {
@@ -22,12 +22,10 @@ export default function copyBoilerplateSettings(packName) {
         const filename = srcDir.name === 'dotfiles' ? `.${file}` : file;
         const dest = path.join(destDir, filename);
         fs.copyFileSync(src, dest);
-
-        clearLastLineAndPrint(chalk.green.bold(`${filename} created`))
       });
     }
   });
   clearLastLineAndPrint(
-    chalk.green.bold(`Configuration files created [${packName}]`)
+    chalk.green.bold(`Common development settings created [${packName}]`)
   );
 }
