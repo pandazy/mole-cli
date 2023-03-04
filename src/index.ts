@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-const yargs = require('yargs/yargs');
 
-const runCommand = require('./dist/src/lib/run-command.js').default;
-const initializeSettings = require('./dist/src/lib/initialize-settings.js').default;
-const getVersion = require('./dist/src/lib/get-version.js').default;
+import yargs from 'yargs/yargs';
+import runCommand from './lib/run-command';
+import initializeSettings, { TemplateType } from './lib/initialize-settings';
+import getVersion from './lib/get-version';
 
 const args = process.argv.slice(2);
 
 const starterCmd = 'mole';
-const argv = yargs(args)
+const { argv } = yargs(args)
   .option('c', {
     type: 'string',
     describe: 'The command to run',
@@ -18,8 +18,9 @@ const argv = yargs(args)
   .option('n', {
     type: 'boolean',
     default: false,
-    describe: 'If specified, it will initialize development settings, \n'
-      + 'including TypeScript, Jest, ESLint, etc., ' + 'install dependencies, ' +
+    describe: 'If specified, it will initialize development settings, \n' +
+      'including TypeScript, Jest, ESLint, etc., \n' +
+      'install dependencies, ' +
       ' and run the command',
     alias: 'new'
   })
@@ -42,16 +43,23 @@ const argv = yargs(args)
   })
   .version(getVersion())
   .usage(`Usage: ${starterCmd} [-y][-n] -c <command>`)
-  .example(`${starterCmd} -c "yarn test"', 'Run "yarn test"`)
+  .example(`${starterCmd} -c "yarn test"`, 'Run "yarn test"')
   .example(`${starterCmd} -n -c "yarn test"`, 'Initialize the settings and run "yarn test"')
-  .strict()
-  .argv;
+  .strict();
 
-if (argv.n) {
-  initializeSettings(argv.bt);
+const tArgv = argv as unknown as {
+  c: string;
+  n: boolean;
+  bt: TemplateType;
+  skipPackageCheck: boolean;
+};
+
+if (tArgv.n) {
+  initializeSettings(tArgv.bt);
 }
 
-runCommand(argv.c, {
-  isNew: argv.n,
-  skipPackageCheck: argv.skipPackageCheck,
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+runCommand(tArgv.c, {
+  isNew: tArgv.n,
+  skipPackageCheck: tArgv.skipPackageCheck,
 });

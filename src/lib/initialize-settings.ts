@@ -5,7 +5,7 @@ import updatePackageJSONSettings from "./update-package-json-settings";
 import removeYarnLock from "./remove-yarn-lock";
 import { writeDocker } from "./docker-config";
 
-type TemplateType = 'lib' | 'fe';
+export type TemplateType = 'lib' | 'fe';
 
 const TemplateMap: Record<TemplateType, PackName> = {
   'lib': 'new-lib-root',
