@@ -7,6 +7,11 @@
     "mole": "./index.js",
     "mole-modules": "./bin/prt-nm"
   },
+  "files": [
+    "dist/**/*",
+    "index.js",
+    "bin"
+  ],
   "scripts": {
     "test": "jest --coverage",
     "build": "yarn clean && tsc --build tsconfig.build.json",
