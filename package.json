@@ -2,15 +2,15 @@
   "name": "@pandazy/mole-cli",
   "version": "0.4.11",
   "description": "Shell command helpers",
-  "main": "./dist/src/index.js",
+  "main": "./dist/index.js",
   "bin": {
-    "mole": "./dist/src/index.js",
+    "mole": "./dist/index.js",
     "mole-modules": "./bin/prt-nm",
     "mole-execize": "./bin/prt-execize"
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "rm -rf dist && tsc --build tsconfig.build.json && chmod +x ./dist/src/index.js",
+    "build": "rm -rf dist && tsc --build tsconfig.build.json && chmod +x ./dist/index.js",
     "clean": "rm -rf coverage",
     "test:clear-cache": " jest --clearCache",
     "prepare": "yarn build",
