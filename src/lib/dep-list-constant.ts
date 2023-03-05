@@ -1,31 +1,15 @@
-export const DevDepsMole = Object.freeze([
-  '@commitlint/cli',
-  '@commitlint/config-conventional',
-  '@pandazy/eslint-config-mole',
-  '@pandazy/mole-config',
-  '@types/jest',
-  '@typescript-eslint/eslint-plugin',
-  '@typescript-eslint/parser',
-  'eslint',
-  'eslint-config-airbnb',
-  'eslint-config-airbnb-typescript',
-  'eslint-config-prettier',
-  'eslint-config-standard',
-  'eslint-config-typescript',
-  'eslint-plugin-import',
-  'eslint-plugin-jest',
-  'eslint-plugin-jsx-a11y',
-  'eslint-plugin-prettier',
-  'eslint-plugin-react',
-  'eslint-plugin-react-hooks',
-  'eslint-plugin-testing-library',
-  'husky',
-  'jest',
-  'lint-staged',
-  'prettier',
-  'ts-jest',
-  'typescript',
-]);
+import { readLibFile } from './file-helpers';
+
+/**
+ * To avoid duplicating the package.json file in build, we dynamically read it.
+ */
+const LibPackageJSON = JSON.parse(readLibFile('../../package.json')) as unknown as {
+  devDependencies: Record<string, string>;
+};
+
+export const DevDepsMole = Object.freeze(
+  Object.keys(LibPackageJSON.devDependencies as unknown as Record<string, string>)
+);
 
 const DevDepsGatsbyHad = Object.freeze(['typescript', 'ts-jest', 'jest', 'tslib']);
 
