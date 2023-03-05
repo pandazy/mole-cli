@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# This script is used to make entrypoint scripts executable
+# after the TypeScript build process
+
