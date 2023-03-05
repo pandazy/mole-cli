@@ -1,7 +1,6 @@
-
 /**
  * Expose to allow mocking in tests
- * @returns 
+ * @returns
  */
 export function getProcess(): NodeJS.Process {
   return process;
@@ -9,7 +8,7 @@ export function getProcess(): NodeJS.Process {
 
 /**
  * Expose to allow mocking in tests
- * @returns 
+ * @returns
  */
 export function getLibDir(): string {
   // eslint-disable-next-line no-underscore-dangle

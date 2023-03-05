@@ -14,9 +14,7 @@ export type DockerConfig = Record<DockerConfigKey, string | number>;
 
 export function readDocker(): DockerConfig | undefined {
   const envContent = readPandazyConf(ConfName);
-  return envContent ?
-    dotenv.parse(envContent) as DockerConfig :
-    undefined;
+  return envContent ? (dotenv.parse(envContent) as DockerConfig) : undefined;
 }
 
 const DefaultDockerConfig: DockerConfig = {

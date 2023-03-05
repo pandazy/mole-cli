@@ -18,11 +18,12 @@ const { argv } = yargs(args)
   .option('n', {
     type: 'boolean',
     default: false,
-    describe: 'If specified, it will initialize development settings, \n' +
+    describe:
+      'If specified, it will initialize development settings, \n' +
       'including TypeScript, Jest, ESLint, etc., \n' +
       'install dependencies, ' +
       ' and run the command',
-    alias: 'new'
+    alias: 'new',
   })
   .option('bt', {
     type: 'string',

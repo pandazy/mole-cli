@@ -11,7 +11,7 @@ export function getLibPath(...paths: string[]): string {
 }
 
 export function exists(filePath: string): boolean {
-  return fs.existsSync(filePath);;
+  return fs.existsSync(filePath);
 }
 
 export function justRead(filePath: string): string {

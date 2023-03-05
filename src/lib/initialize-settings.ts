@@ -1,4 +1,3 @@
-
 import chalk from 'chalk';
 import copyBoilerplateSettings, { PackName } from './copy-boilerplate-settings';
 import updatePackageJSONSettings from './update-package-json-settings';
@@ -8,8 +7,8 @@ import { writeDocker } from './docker-config';
 export type TemplateType = 'lib' | 'fe';
 
 const TemplateMap: Record<TemplateType, PackName> = {
-  'lib': 'new-lib-root',
-  'fe': 'new-fe-root',
+  lib: 'new-lib-root',
+  fe: 'new-fe-root',
 };
 
 export default function initializeSettings(templateType: TemplateType): void {
