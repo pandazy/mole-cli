@@ -1,9 +1,7 @@
-import fs from 'fs';
-import path from 'path';
 import chalk from 'chalk';
 import codePackageJSON from '../../package.json';
 import clearLastLineAndPrint from './print-helpers';
-import { writeUserFile } from './file-helpers';
+import { readUserFile, writeUserFile } from './file-helpers';
 
 const Scripts = codePackageJSON.scripts;
 
@@ -43,11 +41,9 @@ function updateGitHooks(packageJSON: PackageJSON): PackageJSON {
   };
 }
 
-const CurrentUserPackageJSONPath = path.resolve(process.cwd(), 'package.json');
-
 export default function updatePackageJSONSettings(): void {
   const userPackageJSON = JSON.parse(
-    fs.readFileSync(CurrentUserPackageJSONPath, 'utf8') ?? '{}'
+    readUserFile('package.json')
   ) as PackageJSON;
   const finalJSON = [
     updateNPMRegistry,

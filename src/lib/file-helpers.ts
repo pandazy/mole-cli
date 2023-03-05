@@ -10,31 +10,38 @@ export function getLibPath(...paths: string[]): string {
   return path.resolve(getLibDir(), ...paths);
 }
 
-export function justRead(...paths: string[]): string {
-  const filePath = path.resolve(...paths);
-  if (!fs.existsSync(filePath)) {
+export function exists(filePath: string): boolean {
+  return fs.existsSync(filePath);;
+}
+
+export function justRead(filePath: string): string {
+  if (!exists(filePath)) {
     return '';
   }
   return fs.readFileSync(filePath, 'utf8');
 }
 
 export function readLibFile(...paths: string[]): string {
-  return justRead(
-    getLibPath(...paths)
-  );
+  return justRead(getLibPath(...paths));
 }
 
 export function readUserFile(...paths: string[]): string {
-  return justRead(
-    getUserPath(...paths)
-  );
+  return justRead(getUserPath(...paths));
+}
+
+export function justMkdir(dirPath: string): void {
+  if (!exists(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
 }
 
 export function makeUserDir(...paths: string[]): void {
   const dirPath = getUserPath(...paths);
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
+  justMkdir(dirPath);
+}
+
+export function justWriteFile(filePath: string, content: string): void {
+  fs.writeFileSync(filePath, content, { encoding: 'utf8' });
 }
 
 export interface WriteFileOptions {
@@ -43,7 +50,16 @@ export interface WriteFileOptions {
 }
 
 export function writeUserFile({ paths, content }: WriteFileOptions): void {
-  fs.writeFileSync(getUserPath(...paths), content, { encoding: 'utf8' });
+  justWriteFile(getUserPath(...paths), content);
+}
+
+type AfterRemoval = (filePath: string) => void;
+
+export function justRemoveFile(filePath: string, afterRemoval?: AfterRemoval): void {
+  if (exists(filePath)) {
+    fs.unlinkSync(filePath);
+    afterRemoval?.(filePath);
+  }
 }
 
 export interface RemoveFileOptions {
@@ -53,8 +69,5 @@ export interface RemoveFileOptions {
 
 export function removeUserFile({ paths, afterRemoval }: RemoveFileOptions): void {
   const filePath = getUserPath(...paths);
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-    afterRemoval?.(filePath);
-  }
+  justRemoveFile(filePath, afterRemoval);
 }
