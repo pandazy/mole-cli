@@ -19,13 +19,25 @@ module.exports = {
     "project": "./tsconfig.json",
     "tsconfigRootDir": __dirname
   },
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "error",
     "semi": ["error", "always"],
     "no-console": "off",
     "indent": ["error", 2],
     "import/extensions": "off",
-    "max-len": ["error", { "code": 120, ignoreComments: true }],
-  }
+    "max-len": ["error", { "code": 100, ignoreComments: true }],
+    "quotes": ["error", "single", {
+      avoidEscape: true,
+      allowTemplateLiterals: true,
+    }],
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+      }
+    }
+  ]
 };

@@ -3,6 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import codePackageJSON from '../../package.json';
 import clearLastLineAndPrint from './print-helpers';
+import { writeUserFile } from './file-helpers';
 
 const Scripts = codePackageJSON.scripts;
 
@@ -56,7 +57,10 @@ export default function updatePackageJSONSettings(): void {
     (packageJSON, update) => update(packageJSON),
     userPackageJSON
   );
-  fs.writeFileSync('./package.json', `${JSON.stringify(finalJSON, null, 2)}\n`);
+  writeUserFile({
+    paths: ['package.json'],
+    content: `${JSON.stringify(finalJSON, null, 2)}\n`,
+  });
   clearLastLineAndPrint(
     chalk.green.bold('package.json settings updated.')
   );

@@ -1,7 +1,7 @@
-import path from "path";
-import chalk from "chalk";
-import dotenv from "dotenv";
-import { readPandazyConf, writePandazyConf } from "./config-utils";
+import path from 'path';
+import chalk from 'chalk';
+import dotenv from 'dotenv';
+import { readPandazyConf, writePandazyConf } from './config-utils';
 
 const pwd = process.cwd();
 const pwdBasedName = path.basename(pwd);

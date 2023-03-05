@@ -1,12 +1,11 @@
-import fs from 'fs';
-import path from 'path';
 import chalk from 'chalk';
-
-const UserYarnLockPath = path.resolve(process.cwd(), 'yarn.lock');
+import { removeUserFile } from './file-helpers';
 
 export default function removeYarnLock(): void {
-  if (fs.existsSync(UserYarnLockPath)) {
-    fs.unlinkSync(UserYarnLockPath);
-    console.log(chalk.blue('Removed yarn.lock'));
-  }
+  removeUserFile({
+    paths: ['yarn.lock'],
+    afterRemoval: () => {
+      console.log(chalk.blue('Removed yarn.lock'));
+    },
+  });
 }
