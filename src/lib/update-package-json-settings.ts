@@ -1,10 +1,11 @@
 import chalk from 'chalk';
 import clearLastLineAndPrint from './print-helpers';
 import { readLibFile, readUserFile, writeUserFile } from './file-helpers';
+import Scripts from '../resources/scripts.json';
 
+// to avoid duplicating the package.json file in build,
+// we dynamically read it
 const CodePackageJSON = JSON.parse(readLibFile('../../package.json')) as Record<string, unknown>;
-
-const Scripts = CodePackageJSON.scripts as Record<string, string>;
 
 type PackageJSON = Record<string, unknown>;
 
