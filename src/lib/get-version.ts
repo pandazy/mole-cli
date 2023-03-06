@@ -1,6 +1,6 @@
-import { readLibFile } from './file-helpers';
+import readPackageJSON from './read-package-json';
 
-const PackageJSON = JSON.parse(readLibFile('../../package.json')) as unknown as {
+const PackageJSON = readPackageJSON() as unknown as {
   version: string;
 };
 

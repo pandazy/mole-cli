@@ -1,9 +1,6 @@
-import { readLibFile } from './file-helpers';
+import readPackageJSON from './read-package-json';
 
-/**
- * To avoid duplicating the package.json file in build, we dynamically read it.
- */
-const LibPackageJSON = JSON.parse(readLibFile('../../package.json')) as unknown as {
+const LibPackageJSON = readPackageJSON() as unknown as {
   devDependencies: Record<string, string>;
 };
 

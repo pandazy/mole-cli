@@ -1,13 +1,10 @@
 import chalk from 'chalk';
 import clearLastLineAndPrint from './print-helpers';
-import { readLibFile, readUserFile, writeUserFile } from './file-helpers';
+import { readUserFile, writeUserFile } from './file-helpers';
 import Scripts from '../resources/scripts.json';
+import readPackageJSON, { PackageJSON } from './read-package-json';
 
-// to avoid duplicating the package.json file in build,
-// we dynamically read it
-const CodePackageJSON = JSON.parse(readLibFile('../../package.json')) as Record<string, unknown>;
-
-type PackageJSON = Record<string, unknown>;
+const CodePackageJSON = readPackageJSON();
 
 function updateNPMRegistry(packageJSON: PackageJSON): PackageJSON {
   return {
