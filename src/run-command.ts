@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { execSync } from 'child_process';
-import askYesNo from './ask-yes-no';
+import askYesNo from './lib/ask-yes-no';
 import { hasYarnLock } from './config-utils';
 import { DevDepGatsby, DevDepsMole } from './dep-list-constant';
 import { DockerConfig, readDocker, writeDocker } from './docker-config';

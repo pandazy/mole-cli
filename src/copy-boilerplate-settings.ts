@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
-import clearLastLineAndPrint from './print-helpers';
-import { getLibDir } from './global-helpers';
-import { exists } from './file-helpers';
+import clearLastLineAndPrint from './lib/print-helpers';
+import { getLibDir } from './lib/global-helpers';
+import { exists } from './lib/file-helpers';
 
 const CodeDirName = getLibDir();
 

@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { removeUserFile } from './file-helpers';
+import { removeUserFile } from './lib/file-helpers';
 
 export default function removeYarnLock(): void {
   removeUserFile({

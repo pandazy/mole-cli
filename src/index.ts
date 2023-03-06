@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs/yargs';
-import runCommand from './lib/run-command';
-import initializeSettings, { TemplateType } from './lib/initialize-settings';
-import getVersion from './lib/get-version';
+import runCommand from './run-command';
+import initializeSettings, { TemplateType } from './initialize-settings';
+import getVersion from './get-version';
 
 const args = process.argv.slice(2);
 

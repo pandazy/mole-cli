@@ -1,4 +1,4 @@
-import { readLibFile } from './file-helpers';
+import { readLibFile } from './lib/file-helpers';
 
 export type PackageJSON = Record<string, unknown>;
 
