@@ -9,17 +9,17 @@ yarn-debug.log*
 yarn-error.log*
 
 # Unnecessary TypeScript config or source code
-./src
-./tsconfig.json
-./tsconfig.build.json
-./.eslintrc.js
-./.eslintrc.json
-./.eslintignore
-./.prettierrc
+src
+tsconfig.json
+tsconfig.build.json
+.eslintrc.js
+.eslintrc.json
+.eslintignore
+.prettierrc
 
 # Test settings
-./jest.config.js
-./jest.config.ts
+jest.config.js
+jest.config.ts
 
 # Coverage directory used by tools like istanbul
 coverage
