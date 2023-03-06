@@ -795,10 +795,10 @@
   resolved "https://npm.pkg.github.com/download/@pandazy/eslint-config-mole/0.1.3/44bcae5b24a6fb8db3f93f5a109dbf76776e21e7#44bcae5b24a6fb8db3f93f5a109dbf76776e21e7"
   integrity sha512-Gq5IB4zrF1Hj7shanWqXtQZgArQEL4eoSm4ZBFWow15RK0MOqA7aE/XwMJY1zShZ8AizKKopfas3JIZOTf5O7g==
 
-"@pandazy/mole-config@^0.1.8":
-  version "0.1.8"
-  resolved "https://npm.pkg.github.com/download/@pandazy/mole-config/0.1.8/2534fcdba20d1a6dc2bb7dca2a47454f9847006b#2534fcdba20d1a6dc2bb7dca2a47454f9847006b"
-  integrity sha512-1Zot5B0imFeNK68PSDYxanfDBSaPavs/CAnzfDh/YbsMywfxJJNuSjsjdW0q9TtELwAKnNHbOPBBcBvSTo6Tkg==
+"@pandazy/mole-config@^0.1.10":
+  version "0.1.10"
+  resolved "https://npm.pkg.github.com/download/@pandazy/mole-config/0.1.10/097d1b15e0526517e166bcd112379206b9a6f32c#097d1b15e0526517e166bcd112379206b9a6f32c"
+  integrity sha512-4fW9jZzzSMjFjvGxFYt3PS6z7KuZ/POJernoBOSB1qzxEZlWaV/377vofucEYEe5FxMnbc3a6nlffmYymrJO5w==
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.24"
