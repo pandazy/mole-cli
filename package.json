@@ -6,17 +6,18 @@
   "bin": {
     "mole": "./dist/index.js",
     "mole-modules": "./bin/prt-nm",
-    "mole-execize": "./bin/prt-execize"
+    "mole-chmodx": "./dist/chmodx.js"
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "rm -rf dist && tsc --build tsconfig.build.json && chmod +x ./dist/index.js",
+    "chmodx": "chmod +x dist/chmodx.js && mole-chmodx",
+    "build": "rm -rf dist && tsc --build tsconfig.build.json && yarn chmodx",
     "clean": "rm -rf coverage",
     "test:clear-cache": " jest --clearCache",
     "prepare": "yarn build",
     "test:prepare": "yarn lint && yarn clean && yarn test:clear-cache",
     "test:new": "yarn test:prepare && yarn test",
-    "lint": "prettier --write src/**/*.ts && yarn eslint 'src/**' --ext .ts,.tsx --fix",
+    "lint": "prettier --write src/*.ts src/**/*.ts && yarn eslint 'src/**' --ext .ts,.tsx --fix",
     "release": "yarn lint && yarn clean && yarn test && yarn publish && git clean -fd"
   },
   "publishConfig": {

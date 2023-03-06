@@ -31,7 +31,6 @@
       File location based options 
       They will not work in a node_modules folder
     */
-    
     "outDir": "dist",
     "baseUrl": "src",
     "paths": {
@@ -41,10 +40,12 @@
     },
   },
   "include": [
+    "./src/*",
     "./src/**/*"
   ],
   "exclude": [
     "./node_modules",
+    "./dist/*",
     "./dist/**/*",
   ]
 }
