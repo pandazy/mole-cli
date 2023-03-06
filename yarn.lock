@@ -790,10 +790,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pandazy/eslint-config-mole@^0.1.2":
-  version "0.1.2"
-  resolved "https://npm.pkg.github.com/download/@pandazy/eslint-config-mole/0.1.2/3aa632ec8d0f9411f54a24420b3f5897a4447763#3aa632ec8d0f9411f54a24420b3f5897a4447763"
-  integrity sha512-CQYPrN17eZ/gdgAXmA38g3nvHU/4QGBJ1JQktckU5ydNQ2CAWFMkT+bp2SM8V+wr7bhL/edPCxCJlqq6l5OzkA==
+"@pandazy/eslint-config-mole@^0.1.3":
+  version "0.1.3"
+  resolved "https://npm.pkg.github.com/download/@pandazy/eslint-config-mole/0.1.3/44bcae5b24a6fb8db3f93f5a109dbf76776e21e7#44bcae5b24a6fb8db3f93f5a109dbf76776e21e7"
+  integrity sha512-Gq5IB4zrF1Hj7shanWqXtQZgArQEL4eoSm4ZBFWow15RK0MOqA7aE/XwMJY1zShZ8AizKKopfas3JIZOTf5O7g==
 
 "@pandazy/mole-config@^0.1.8":
   version "0.1.8"
