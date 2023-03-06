@@ -1,6 +1,6 @@
-import readPackageJSON from './read-package-json';
+import readLibPackageJSON from './read-lib-package-json';
 
-const LibPackageJSON = readPackageJSON() as unknown as {
+const LibPackageJSON = readLibPackageJSON() as unknown as {
   devDependencies: Record<string, string>;
 };
 

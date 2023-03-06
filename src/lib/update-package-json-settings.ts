@@ -2,9 +2,9 @@ import chalk from 'chalk';
 import clearLastLineAndPrint from './print-helpers';
 import { readUserFile, writeUserFile } from './file-helpers';
 import Scripts from '../resources/scripts.json';
-import readPackageJSON, { PackageJSON } from './read-package-json';
+import readLibPackageJSON, { PackageJSON } from './read-lib-package-json';
 
-const CodePackageJSON = readPackageJSON();
+const CodePackageJSON = readLibPackageJSON();
 
 function updateNPMRegistry(packageJSON: PackageJSON): PackageJSON {
   return {

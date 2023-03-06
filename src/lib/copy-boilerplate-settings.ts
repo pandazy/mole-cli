@@ -3,6 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import clearLastLineAndPrint from './print-helpers';
 import { getLibDir } from './global-helpers';
+import { exists } from './file-helpers';
 
 const CodeDirName = getLibDir();
 
@@ -12,6 +13,9 @@ export type PackName = 'new-lib-root' | 'new-fe-root' | 'common';
 
 export default function copyBoilerplateSettings(packName: PackName): void {
   const srcParentDir = path.resolve(CodeDirName, `../../boilerplate/${packName}`);
+  if (!exists(srcParentDir)) {
+    return;
+  }
   fs.readdirSync(srcParentDir, { withFileTypes: true }).forEach((srcDir) => {
     if (srcDir.isDirectory()) {
       fs.readdirSync(path.join(srcParentDir, srcDir.name)).forEach((file) => {
@@ -25,5 +29,5 @@ export default function copyBoilerplateSettings(packName: PackName): void {
       });
     }
   });
-  clearLastLineAndPrint(chalk.green.bold(`Common development settings created [${packName}]`));
+  clearLastLineAndPrint(chalk.green.bold(`Basic development settings created [${packName}]`));
 }

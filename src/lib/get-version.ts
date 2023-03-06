@@ -1,6 +1,6 @@
-import readPackageJSON from './read-package-json';
+import readLibPackageJSON from './read-lib-package-json';
 
-const PackageJSON = readPackageJSON() as unknown as {
+const PackageJSON = readLibPackageJSON() as unknown as {
   version: string;
 };
 
