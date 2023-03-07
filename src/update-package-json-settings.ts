@@ -1,8 +1,9 @@
 import chalk from 'chalk';
-import clearLastLineAndPrint from './lib/print-helpers';
+import extractForUserScripts from './lib/extract-for-user-scripts';
+import { print } from './lib/print-helpers';
 import { readUserFile, writeUserFile } from './lib/file-helpers';
-import Scripts from './resources/scripts.json';
-import readLibPackageJSON, { PackageJSON } from './read-lib-package-json';
+import readLibPackageJSON from './read-lib-package-json';
+import { PackageJSON } from './lib/read-user-package-json';
 
 const CodePackageJSON = readLibPackageJSON();
 
@@ -16,13 +17,19 @@ function updateNPMRegistry(packageJSON: PackageJSON): PackageJSON {
   };
 }
 
-function updateYarnCommands(packageJSON: PackageJSON): PackageJSON {
+function replaceChmodx(script: string): string {
+  return script.replaceAll(' && yarn chmodx', '');
+}
+
+function updateScripts(packageJSON: PackageJSON): PackageJSON {
   return {
     ...packageJSON,
-    scripts: {
-      ...(CodePackageJSON.scripts || {}),
-      ...Scripts,
-    },
+    scripts: extractForUserScripts(CodePackageJSON, {
+      excludes: new Set(['chmodx']),
+      specials: {
+        build: replaceChmodx,
+      },
+    }),
   };
 }
 
@@ -42,7 +49,7 @@ function updateGitHooks(packageJSON: PackageJSON): PackageJSON {
 
 export default function updatePackageJSONSettings(): void {
   const userPackageJSON = JSON.parse(readUserFile('package.json')) as PackageJSON;
-  const finalJSON = [updateNPMRegistry, updateYarnCommands, updateGitHooks].reduce(
+  const finalJSON = [updateNPMRegistry, updateScripts, updateGitHooks].reduce(
     (packageJSON, update) => update(packageJSON),
     userPackageJSON
   );
@@ -50,5 +57,5 @@ export default function updatePackageJSONSettings(): void {
     paths: ['package.json'],
     content: `${JSON.stringify(finalJSON, null, 2)}\n`,
   });
-  clearLastLineAndPrint(chalk.green.bold('package.json settings updated.'));
+  print(chalk.green.bold('package.json settings updated.'));
 }

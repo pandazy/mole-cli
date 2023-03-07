@@ -2,7 +2,7 @@
 
 import yargs from 'yargs/yargs';
 import runCommand from './run-command';
-import initializeSettings, { TemplateType } from './initialize-settings';
+import initializeSettings, { Boilerplate } from './initialize-settings';
 import getVersion from './get-version';
 
 const args = process.argv.slice(2);
@@ -30,7 +30,7 @@ const { argv } = yargs(args)
     default: 'lib',
     describe: 'The boilerplate type to use',
     alias: 'boilerplateType',
-    choices: ['lib', 'fe'],
+    choices: ['lib', 'fe', 'srv'],
   })
   .option('spc', {
     type: 'boolean',
@@ -51,7 +51,7 @@ const { argv } = yargs(args)
 const tArgv = argv as unknown as {
   c: string;
   n: boolean;
-  bt: TemplateType;
+  bt: Boilerplate;
   skipPackageCheck: boolean;
 };
 

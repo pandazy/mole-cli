@@ -1,6 +1,7 @@
 import path from 'path';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
+import { print } from './lib/print-helpers';
 import { readPandazyConf, writePandazyConf } from './config-utils';
 
 const pwd = process.cwd();
@@ -26,5 +27,5 @@ const DefaultDockerConfig: DockerConfig = {
 
 export function writeDocker(): void {
   writePandazyConf(ConfName, DefaultDockerConfig);
-  console.log(chalk.green.bold(`Docker settings created`));
+  print(chalk.green.bold(`Docker settings created`));
 }

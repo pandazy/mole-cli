@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import { execSync } from 'child_process';
+import { print } from './lib/print-helpers';
 import askYesNo from './lib/ask-yes-no';
 import { hasYarnLock } from './config-utils';
 import { DevDepGatsby, DevDepsMole } from './dep-list-constant';
@@ -15,10 +16,10 @@ function addNewDockerConfig(): DockerConfig {
 function justRunCommand(cmd: string, pandazyDev: DockerConfig, initialScript = ''): void {
   const { FOLDER, NODE_MODULES_VOLUME_NAME, EX_PORT, IN_PORT } = pandazyDev;
 
-  console.log(chalk.blue.bold(`Running command:`));
-  console.log(chalk.blue.bold(`------------------`));
-  console.log(chalk.blue.bold(cmd));
-  console.log(chalk.blue.bold(`------------------`));
+  print(chalk.blue.bold(`Running command:`));
+  print(chalk.blue.bold(`------------------`));
+  print(chalk.blue.bold(cmd));
+  print(chalk.blue.bold(`------------------`));
 
   execSync(
     [
@@ -33,9 +34,9 @@ function justRunCommand(cmd: string, pandazyDev: DockerConfig, initialScript = '
     { stdio: 'inherit' }
   );
 
-  console.log(chalk.blue.bold(`------------------`));
-  console.log(chalk.blue.bold(`Command finished`));
-  console.log(chalk.blue.bold(`------------------`));
+  print(chalk.blue.bold(`------------------`));
+  print(chalk.blue.bold(`Command finished`));
+  print(chalk.blue.bold(`------------------`));
 }
 
 function runCommandWithContainerSettings(cmd: string, initialScript = ''): void {
@@ -60,7 +61,7 @@ export default function runCommand(cmd: string, options: RunCommandOptions = {})
   const runAsUsual: () => Promise<void> = () =>
     Promise.resolve().then(() => runCommandWithContainerSettings(cmd, isNew ? addPackScript : ''));
   if (skipPackageCheck) {
-    console.log(chalk.yellow.bold('Skipping node-module integrity check...'));
+    print(chalk.yellow.bold('Skipping node-module integrity check...'));
   }
   if (!isNew && !skipPackageCheck && (!foundYarnLock || hasMissingPackagesInVolume(isGatsby))) {
     return askYesNo(

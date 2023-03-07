@@ -6,11 +6,11 @@
   "bin": {
     "mole": "./dist/index.js",
     "mole-modules": "./bin/prt-nm",
-    "mole-chmodx": "./dist/chmodx.js"
+    "mole-chmodx": "./dist/chmodx.run.js"
   },
   "scripts": {
     "test": "jest --coverage",
-    "chmodx": "chmod +x dist/chmodx.js && mole-chmodx",
+    "chmodx": "chmod +x dist/chmodx.run.js && mole-chmodx",
     "build": "rm -rf dist && tsc --build tsconfig.build.json && yarn chmodx",
     "clean": "rm -rf coverage",
     "test:clear-cache": " jest --clearCache",

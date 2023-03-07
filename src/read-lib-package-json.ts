@@ -1,6 +1,5 @@
+import { PackageJSON } from './lib/read-user-package-json';
 import { readLibFile } from './lib/file-helpers';
-
-export type PackageJSON = Record<string, unknown>;
 
 /**
  * To avoid duplicating the package.json file in build, we dynamically read it.

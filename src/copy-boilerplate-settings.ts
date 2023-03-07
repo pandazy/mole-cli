@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
-import clearLastLineAndPrint from './lib/print-helpers';
+import { print } from './lib/print-helpers';
 import { getLibDir } from './lib/global-helpers';
 import { exists } from './lib/file-helpers';
 
@@ -9,7 +9,7 @@ const CodeDirName = getLibDir();
 
 const destDir = path.resolve(process.cwd());
 
-export type PackName = 'new-lib-root' | 'new-fe-root' | 'common';
+export type PackName = 'lib' | 'fe' | 'common' | 'srv';
 
 export default function copyBoilerplateSettings(packName: PackName): void {
   const srcParentDir = path.resolve(CodeDirName, `../../boilerplate/${packName}`);
@@ -29,5 +29,5 @@ export default function copyBoilerplateSettings(packName: PackName): void {
       });
     }
   });
-  clearLastLineAndPrint(chalk.green.bold(`Basic development settings created [${packName}]`));
+  print(chalk.green.bold(`Basic development settings created [${packName}]`));
 }
