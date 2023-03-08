@@ -2,8 +2,9 @@
 
 import yargs from 'yargs/yargs';
 import chalk from 'chalk';
+import { ProjectType } from 'project-helpers';
 import runCommand from './run-command';
-import initializeSettings, { Boilerplate } from './initialize-settings';
+import initializeSettings from './initialize-settings';
 import getVersion from './get-version';
 import { print } from './lib/print-helpers';
 
@@ -55,12 +56,12 @@ if (noCommandMsg && !command) {
 
 const starterCmd = 'mole';
 const { argv } = yargs(realArgs)
-  .option('bt', {
+  .option('pt', {
     type: 'string',
     default: 'lib',
-    describe: 'The boilerplate type to use',
-    alias: 'boilerplateType',
-    choices: ['lib', 'fe', 'srv'],
+    describe: 'The project type, e.g. a utility library, Web UI, or backend server',
+    alias: 'projectType',
+    choices: ['lib', 'webui', 'srv'] as ProjectType[],
   })
   .option('spc', {
     type: 'boolean',
@@ -79,7 +80,7 @@ const { argv } = yargs(realArgs)
   .strict();
 
 const tArgv = argv as unknown as {
-  bt: Boilerplate;
+  pt: ProjectType;
   skipPackageCheck: boolean;
 };
 
@@ -91,10 +92,16 @@ const RunMap: Record<MoleMode, () => void> = {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     runCommand(command as string, {
       skipPackageCheck: tArgv.skipPackageCheck,
+      projectType: tArgv.pt,
     });
   },
   update: () => {
-    initializeSettings(tArgv.bt);
+    initializeSettings(tArgv.pt);
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    runCommand('', {
+      isNew: true,
+      projectType: tArgv.pt,
+    });
   },
 };
 

@@ -1,4 +1,6 @@
 import chalk from 'chalk';
+import { ProjectType } from './project-helpers';
+import extractUserDeps from './extract-user-deps';
 import extractForUserScripts from './lib/extract-for-user-scripts';
 import { print } from './lib/print-helpers';
 import { readUserFile, writeUserFile } from './lib/file-helpers';
@@ -47,12 +49,21 @@ function updateGitHooks(packageJSON: PackageJSON): PackageJSON {
   };
 }
 
-export default function updatePackageJSONSettings(): void {
+function updateDevDeps(packageJSON: PackageJSON, projectType: ProjectType): PackageJSON {
+  const existingDevDeps = (packageJSON.devDependencies ?? {}) as Record<string, string>;
+  return {
+    ...packageJSON,
+    devDependencies: extractUserDeps(projectType, existingDevDeps),
+  };
+}
+
+export default function updatePackageJSONSettings(projectType: ProjectType): void {
   const userPackageJSON = JSON.parse(readUserFile('package.json')) as PackageJSON;
-  const finalJSON = [updateNPMRegistry, updateScripts, updateGitHooks].reduce(
+  const json1 = [updateNPMRegistry, updateScripts, updateGitHooks].reduce(
     (packageJSON, update) => update(packageJSON),
     userPackageJSON
   );
+  const finalJSON = updateDevDeps(json1, projectType);
   writeUserFile({
     paths: ['package.json'],
     content: `${JSON.stringify(finalJSON, null, 2)}\n`,

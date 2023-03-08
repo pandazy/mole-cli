@@ -1,3 +1,4 @@
+import { ProjectType } from './project-helpers';
 import readLibPackageJSON from './read-lib-package-json';
 
 const LibPackageJSON = readLibPackageJSON() as unknown as {
@@ -8,9 +9,15 @@ export const DevDepsMole = Object.freeze(
   Object.keys(LibPackageJSON.devDependencies as unknown as Record<string, string>)
 );
 
-const DevDepsGatsbyHad = Object.freeze(['typescript', 'ts-jest', 'jest', 'tslib']);
+const DevDepsMap: Record<ProjectType, readonly string[]> = {
+  lib: DevDepsMole,
+  webui: DevDepsMole,
+  srv: DevDepsMole,
+};
 
-export const DevDepGatsby = DevDepsMole.filter((dep) => !DevDepsGatsbyHad.includes(dep));
+export function getDevDeps(projectType: ProjectType): readonly string[] {
+  return DevDepsMap[projectType];
+}
 
 export const ApolloClientDeps = Object.freeze([
   'graphql',

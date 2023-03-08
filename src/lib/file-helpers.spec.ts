@@ -8,6 +8,7 @@ import {
   readUserFile,
   removeUserFile,
   justRead,
+  getUserRepoName,
 } from './file-helpers';
 
 jest.mock('./global-helpers', () => ({
@@ -36,6 +37,10 @@ describe('file-helpers', () => {
 
   it('should return the user path', () => {
     expect(getUserPath('jesse')).toBe('/walter/jesse');
+  });
+
+  it('should get user repo name', () => {
+    expect(getUserRepoName()).toBe('walter');
   });
 
   it('should read a file', () => {

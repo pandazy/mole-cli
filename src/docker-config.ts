@@ -1,26 +1,22 @@
-import path from 'path';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
+import { runDocker } from './lib/run-docker';
 import { print } from './lib/print-helpers';
-import { readPandazyConf, writePandazyConf } from './config-utils';
-
-const pwd = process.cwd();
-const pwdBasedName = path.basename(pwd);
+import { PandazyConfig, readPandazyConf, writePandazyConf } from './config-utils';
 
 const ConfName = 'docker';
 
-export type DockerConfigKey = 'FOLDER' | 'NODE_MODULES_VOLUME_NAME' | 'EX_PORT' | 'IN_PORT';
-
-export type DockerConfig = Record<DockerConfigKey, string | number>;
+export interface DockerConfig extends PandazyConfig {
+  EX_PORT: number;
+  IN_PORT: number;
+}
 
 export function readDocker(): DockerConfig | undefined {
   const envContent = readPandazyConf(ConfName);
-  return envContent ? (dotenv.parse(envContent) as DockerConfig) : undefined;
+  return envContent ? (dotenv.parse(envContent) as unknown as DockerConfig) : undefined;
 }
 
 const DefaultDockerConfig: DockerConfig = {
-  FOLDER: path.resolve(pwd),
-  NODE_MODULES_VOLUME_NAME: `${pwdBasedName}_node_modules`,
   EX_PORT: 3000,
   IN_PORT: 3000,
 };
@@ -28,4 +24,19 @@ const DefaultDockerConfig: DockerConfig = {
 export function writeDocker(): void {
   writePandazyConf(ConfName, DefaultDockerConfig);
   print(chalk.green.bold(`Docker settings created`));
+}
+
+function getNewDockerConfig(): DockerConfig {
+  writeDocker();
+  return readDocker() as DockerConfig;
+}
+
+export function runDockerWithPandazyConfig(cmd: string): void {
+  const dockerConf = readDocker();
+  const checkedConfig = dockerConf ?? getNewDockerConfig();
+  runDocker(cmd, {
+    shareNpmrc: true,
+    exPort: checkedConfig.EX_PORT,
+    inPort: checkedConfig.IN_PORT,
+  });
 }

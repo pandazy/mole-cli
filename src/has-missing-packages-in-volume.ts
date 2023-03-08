@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
+import { ProjectType } from 'project-helpers';
 import { readPandazyConf, removePandazyConf } from './config-utils';
-import { DevDepGatsby, DevDepsMole } from './dep-list-constant';
+import { getDevDeps } from './dep-list-constant';
 
 const ConfName = '_node_modules';
 const ModuleListingCmd = 'mole-modules';
@@ -18,8 +19,8 @@ function getNodeModulesInVolume(): string[] {
   return nodeModules;
 }
 
-export default function hasMissingPackagesInVolume(isGatsby = false): boolean {
+export default function hasMissingPackagesInVolume(projectType: ProjectType): boolean {
   const volumePackages = getNodeModulesInVolume();
-  const depsToCheck = isGatsby ? DevDepGatsby : DevDepsMole;
-  return depsToCheck.some((dep) => !volumePackages.includes(dep));
+  const deps = getDevDeps(projectType);
+  return deps.some((dep) => !volumePackages.includes(dep));
 }

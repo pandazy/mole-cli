@@ -6,6 +6,10 @@ export function getUserPath(...paths: string[]): string {
   return path.resolve(getProcess().cwd(), ...paths);
 }
 
+export function getUserRepoName(): string {
+  return path.basename(getUserPath(''));
+}
+
 export function getLibPath(...paths: string[]): string {
   return path.resolve(getLibDir(), ...paths);
 }

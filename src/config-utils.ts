@@ -16,11 +16,13 @@ const ConfPathMap: Record<ConfType, string[]> = {
 
 export type ConfType = 'docker' | '_node_modules';
 
+export type PandazyConfig = Record<string, string | number>;
+
 export function readPandazyConf(confName: ConfType): string | undefined {
   return readUserFile(...ConfPathMap[confName]);
 }
 
-export function writePandazyConf(confName: ConfType, conf: Record<string, string | number>): void {
+export function writePandazyConf(confName: ConfType, conf: PandazyConfig): void {
   const envContent = Object.entries(conf).reduce(
     (prev, [key, value]) => `${prev}${key}=${value}\n`,
     ''

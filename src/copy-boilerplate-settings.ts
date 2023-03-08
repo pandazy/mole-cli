@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
+import { BoilerplateType, ProjectType } from './project-helpers';
 import { print } from './lib/print-helpers';
 import { getLibDir } from './lib/global-helpers';
 import { exists } from './lib/file-helpers';
@@ -9,10 +10,10 @@ const CodeDirName = getLibDir();
 
 const destDir = path.resolve(process.cwd());
 
-export type PackName = 'lib' | 'fe' | 'common' | 'srv';
+export type PackName = ProjectType | 'common';
 
-export default function copyBoilerplateSettings(packName: PackName): void {
-  const srcParentDir = path.resolve(CodeDirName, `../../boilerplate/${packName}`);
+export default function copyBoilerplateSettings(boilerplateType: BoilerplateType): void {
+  const srcParentDir = path.resolve(CodeDirName, `../../boilerplate/${boilerplateType}`);
   if (!exists(srcParentDir)) {
     return;
   }
@@ -29,5 +30,5 @@ export default function copyBoilerplateSettings(packName: PackName): void {
       });
     }
   });
-  print(chalk.green.bold(`Basic development settings created [${packName}]`));
+  print(chalk.green.bold(`Basic development settings created [${boilerplateType}]`));
 }
