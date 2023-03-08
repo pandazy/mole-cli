@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 import { getUserPath, getUserRepoName } from './file-helpers';
 import { print } from './print-helpers';
 
-export const NodeModuleVolume = `${getUserRepoName()}_node_modules`;
+export const NodeModuleVolume = `mole_${getUserRepoName()}_node_modules`;
 
 export interface RunDockerOptions {
   shareNpmrc?: boolean;
@@ -28,7 +28,7 @@ export function runDocker(cmd: string, { shareNpmrc, exPort, inPort }: RunDocker
     [
       'docker run --rm -it',
       `-v ${userFolder}:/app`,
-      `-v mole${NodeModuleVolume}:/app/node_modules`,
+      `-v ${NodeModuleVolume}:/app/node_modules`,
       shareNpmrc ? `-v ~/.npmrc:/root/.npmrc` : '',
       `-p ${exPort}:${inPort}`,
       '-w /app node:buster',
