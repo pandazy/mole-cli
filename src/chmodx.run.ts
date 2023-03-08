@@ -3,6 +3,7 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 import chalk from 'chalk';
+import { print } from './lib/print-helpers';
 import assertMoleCliOnly from './assert-mole-cli-only';
 import { getUserPath } from './lib/file-helpers';
 
@@ -19,7 +20,7 @@ fs.readdirSync(distFolder).forEach((file) => {
   }
   const executablePath = `${distFolder}/${file}`;
   execSync(`chmod +x ${executablePath}`, { stdio: 'inherit' });
-  console.log(chalk.green(`Executable file created: ${executablePath}`));
+  print(chalk.green(`Specified executable entry: ${executablePath}`));
   executableCount += 1;
 });
 
