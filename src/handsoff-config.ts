@@ -2,21 +2,21 @@ import dotenv from 'dotenv';
 import { NodeModuleVolume } from './lib/run-docker';
 import { ConfType, PandazyConfig, readPandazyConf, writePandazyConf } from './config-utils';
 
-const ConfName: ConfType = '_reserved';
+const ConfName: ConfType = 'handsoff';
 
-export interface ReservedConfig extends PandazyConfig {
+export interface HandsoffConfig extends PandazyConfig {
   NODE_MODULE_VOLUME: string;
 }
 
-const DefaultReservedConfig: ReservedConfig = {
+const DefaultReservedConfig: HandsoffConfig = {
   NODE_MODULE_VOLUME: NodeModuleVolume,
 };
 
-export function readReserved(): ReservedConfig | undefined {
+export function readHandsoff(): HandsoffConfig | undefined {
   const envContent = readPandazyConf(ConfName);
-  return envContent ? (dotenv.parse(envContent) as unknown as ReservedConfig) : undefined;
+  return envContent ? (dotenv.parse(envContent) as unknown as HandsoffConfig) : undefined;
 }
 
-export function writeReserved(): void {
+export function writeHandsoff(): void {
   writePandazyConf(ConfName, DefaultReservedConfig);
 }

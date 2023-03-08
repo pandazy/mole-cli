@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source .pandazy/_reserved
+source .pandazy/handsoff
 
 echo $volume
 
