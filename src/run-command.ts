@@ -25,7 +25,7 @@ export default async function runCommand(cmd: string, options: RunCommandOptions
     return Promise.resolve();
   }
 
-  if (skipPackageCheck || (foundYarnLock && hasMissingPackagesInVolume(projectType))) {
+  if (skipPackageCheck || (foundYarnLock && !hasMissingPackagesInVolume(projectType))) {
     runDockerWithPandazyConfig(cmd);
     return Promise.resolve();
   }

@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import { writeReserved } from './reserved-config';
 import { ProjectType } from './project-helpers';
 import copyCommonConfig from './copy-common-config';
 import copyBoilerplateSettings from './copy-boilerplate-settings';
@@ -14,5 +15,6 @@ export default function initializeSettings(projectType: ProjectType): void {
   copyBoilerplateSettings(projectType);
   removeYarnLock();
   updatePackageJSONSettings(projectType);
+  writeReserved();
   writeDocker();
 }

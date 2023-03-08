@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source .pandazy/docker
+source .pandazy/_reserved
 
 echo $volume
 
-docker run --rm -it -v $NODE_MODULES_VOLUME_NAME:/app/node_modules -w /app node:buster sh -c "cd /app/node_modules &&\
+docker run --rm -it -v $NODE_MODULE_VOLUME:/app/node_modules -w /app node:buster sh -c "cd /app/node_modules &&\
  find . -maxdepth 2 -type d -not -empty | cut -d / -f 2-" >./.pandazy/_node_modules

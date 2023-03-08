@@ -3,6 +3,8 @@ import { execSync } from 'child_process';
 import { getUserPath, getUserRepoName } from './file-helpers';
 import { print } from './print-helpers';
 
+export const NodeModuleVolume = `${getUserRepoName()}_node_modules`;
+
 export interface RunDockerOptions {
   shareNpmrc?: boolean;
   exPort: number;
@@ -16,7 +18,6 @@ export function runDocker(cmd: string, { shareNpmrc, exPort, inPort }: RunDocker
   print(chalk.blue.bold(`------------------`));
 
   const userFolder = getUserPath('');
-  const nodeModuleVolume = `${getUserRepoName()}_node_modules`;
 
   if (!cmd) {
     print(chalk.yellow.bold(`No command provided, docker did not run`));
@@ -27,7 +28,7 @@ export function runDocker(cmd: string, { shareNpmrc, exPort, inPort }: RunDocker
     [
       'docker run --rm -it',
       `-v ${userFolder}:/app`,
-      `-v mole${nodeModuleVolume}:/app/node_modules`,
+      `-v mole${NodeModuleVolume}:/app/node_modules`,
       shareNpmrc ? `-v ~/.npmrc:/root/.npmrc` : '',
       `-p ${exPort}:${inPort}`,
       '-w /app node:buster',

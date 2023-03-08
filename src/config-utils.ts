@@ -11,10 +11,11 @@ const ROOT = './.pandazy';
 
 const ConfPathMap: Record<ConfType, string[]> = {
   docker: [ROOT, 'docker'],
+  _reserved: [ROOT, '_reserved'],
   _node_modules: [ROOT, '_node_modules'],
 };
 
-export type ConfType = 'docker' | '_node_modules';
+export type ConfType = 'docker' | '_reserved' | '_node_modules';
 
 export type PandazyConfig = Record<string, string | number>;
 
