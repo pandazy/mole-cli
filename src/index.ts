@@ -2,6 +2,7 @@
 
 import yargs from 'yargs/yargs';
 import chalk from 'chalk';
+import { readInit } from './init-config';
 import { getProcess } from './lib/global-helpers';
 import { ProjectType } from './project-helpers';
 import buildStarterKit from './build-starter-kit';
@@ -124,10 +125,17 @@ const RunMap: Record<MoleMode, () => void> = {
     buildStarterKit(command as string, tArgv.pt ?? 'lib');
   },
   run: () => {
+    const projectType = readInit()?.projectType;
+    if (!projectType) {
+      throw new Error(
+        'Project type is not specified, please run `mole update --pt <projectType>` first'
+      );
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     runCommand(command as string, {
       skipPackageCheck: tArgv.skipPackageCheck,
-      projectType: tArgv.pt,
+      projectType,
     });
   },
   update: () => {
