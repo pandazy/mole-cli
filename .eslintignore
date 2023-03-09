@@ -1,4 +1,5 @@
 dist
+starter-kit
 node_modules
 *.ts.snap
 jest.config.js

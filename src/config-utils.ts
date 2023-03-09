@@ -13,9 +13,10 @@ const ConfPathMap: Record<ConfType, string[]> = {
   docker: [ROOT, 'docker'],
   handsoff: [ROOT, 'handsoff'],
   _node_modules: [ROOT, '_node_modules'],
+  init: [ROOT, 'init'],
 };
 
-export type ConfType = 'docker' | 'handsoff' | '_node_modules';
+export type ConfType = 'docker' | 'init' | 'handsoff' | '_node_modules';
 
 export type PandazyConfig = Record<string, string | number>;
 

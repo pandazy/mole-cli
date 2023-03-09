@@ -57,8 +57,27 @@ function updateDevDeps(packageJSON: PackageJSON, projectType: ProjectType): Pack
   };
 }
 
-export default function updatePackageJSONSettings(projectType: ProjectType): void {
-  const userPackageJSON = JSON.parse(readUserFile('package.json')) as PackageJSON;
+function getDefaultPackageJSON(projectName: string): PackageJSON {
+  return {
+    name: `${projectName}`,
+    version: '0.1.0',
+    description: 'UPDATE ME',
+    main: 'dist/index.js',
+    scripts: {},
+  };
+}
+
+export default function updatePackageJSONSettings(
+  projectType: ProjectType,
+  projectName?: string
+): void {
+  const jsonReadouts = readUserFile('package.json');
+  if (!jsonReadouts && !projectName) {
+    throw new Error('No package.json found and no project name provided.');
+  }
+  const userPackageJSON = jsonReadouts
+    ? (JSON.parse(jsonReadouts) as PackageJSON)
+    : getDefaultPackageJSON(projectName as string);
   const json1 = [updateNPMRegistry, updateScripts, updateGitHooks].reduce(
     (packageJSON, update) => update(packageJSON),
     userPackageJSON
