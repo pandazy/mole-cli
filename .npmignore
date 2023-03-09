@@ -8,13 +8,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Unnecessary TypeScript config
-tsconfig.json
-tsconfig.build.json
-
-# Test settings
-jest.config.js
-
 # Coverage directory used by tools like istanbul
 coverage
 
