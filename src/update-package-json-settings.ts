@@ -63,6 +63,7 @@ function getDefaultPackageJSON(projectName: string): PackageJSON {
     version: '0.1.0',
     description: 'UPDATE ME',
     main: 'dist/index.js',
+    license: 'MIT',
     scripts: {},
   };
 }
