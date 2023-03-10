@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
-import { exists, getUserPath , getProcess } from '@pandazy/mole-core/dist/nodejs';
+import { exists, getUserPath, getProcess } from '@pandazy/mole-core/dist/nodejs';
 import { ProjectType } from './project-helpers';
 import { getProviderPath } from './lib/files';
 

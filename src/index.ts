@@ -2,7 +2,7 @@
 
 import yargs from 'yargs/yargs';
 import chalk from 'chalk';
-import { getProcess , print } from '@pandazy/mole-core/dist/nodejs';
+import { getProcess, print } from '@pandazy/mole-core/dist/nodejs';
 import { readInit } from './init-config';
 import { ProjectType } from './project-helpers';
 import buildStarterKit from './build-starter-kit';
