@@ -7,7 +7,7 @@ import {
   writeUserFile,
 } from '@pandazy/mole-core/dist/nodejs/files';
 
-const ROOT = './.pandazy';
+const ROOT = '.pandazy';
 
 const ConfPathMap: Record<ConfType, string[]> = {
   docker: [ROOT, 'docker'],

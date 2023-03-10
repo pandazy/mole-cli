@@ -1,7 +1,7 @@
 import { ProjectType } from './project-helpers';
-import readLibPackageJSON from './read-lib-package-json';
+import readProviderPackageJSON from './read-provider-package-json';
 
-const LibPackageJSON = readLibPackageJSON() as unknown as {
+const LibPackageJSON = readProviderPackageJSON() as unknown as {
   devDependencies: Record<string, string>;
 };
 

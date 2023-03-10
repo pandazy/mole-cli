@@ -1,8 +1,9 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
-import { exists, getLibPath, getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
+import { exists, getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
 import { getProcess } from '@pandazy/mole-core/dist/nodejs/globals';
 import { ProjectType } from './project-helpers';
+import { getProviderPath } from './lib/files';
 
 function makeProject(name: string): string {
   const projectPath = getUserPath(name);
@@ -11,7 +12,7 @@ function makeProject(name: string): string {
 }
 
 function makeStarterKitSrc(projectType: ProjectType): void {
-  const kitPath = getLibPath('../../starter-kit', projectType);
+  const kitPath = getProviderPath('starter-kit', projectType);
   const targetPath = getUserPath('src');
   if (!exists(targetPath)) {
     fs.mkdirSync(targetPath);

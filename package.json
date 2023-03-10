@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": {
-    "@pandazy/mole-core": "^2.0.0",
+    "@pandazy/mole-core": "^2.1.0",
     "chalk": "4.1.2",
     "dotenv": "16.0.3",
     "tslib": "^2.5.0",

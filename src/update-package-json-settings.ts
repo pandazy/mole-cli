@@ -4,9 +4,9 @@ import { print } from '@pandazy/mole-core/dist/nodejs/prints';
 import { readUserFile, writeUserFile } from '@pandazy/mole-core/dist/nodejs/files';
 import { ProjectType } from './project-helpers';
 import extractUserDeps from './extract-user-deps';
-import readLibPackageJSON from './read-lib-package-json';
+import readProviderPackageJSON from './read-provider-package-json';
 
-const CodePackageJSON = readLibPackageJSON();
+const CodePackageJSON = readProviderPackageJSON();
 
 function updateNPMRegistry(packageJSON: PackageJSON): PackageJSON {
   return {
