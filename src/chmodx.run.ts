@@ -3,9 +3,9 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 import chalk from 'chalk';
-import { print } from './lib/print-helpers';
+import { print } from '@pandazy/mole-core/dist/nodejs/prints';
+import { getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
 import assertMoleCliOnly from './assert-mole-cli-only';
-import { getUserPath } from './lib/file-helpers';
 
 assertMoleCliOnly();
 

@@ -1,5 +1,5 @@
-import { PackageJSON } from './lib/read-user-package-json';
-import { readLibFile } from './lib/file-helpers';
+import { PackageJSON } from '@pandazy/mole-core/dist/nodejs/package-json';
+import { readLibFile } from '@pandazy/mole-core/dist/nodejs/files';
 
 /**
  * To avoid duplicating the package.json file in build, we dynamically read it.

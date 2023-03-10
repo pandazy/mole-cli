@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import fs from 'fs';
-import { print } from './lib/print-helpers';
-import { getLibPath, getUserPath } from './lib/file-helpers';
+import { print } from '@pandazy/mole-core/dist/nodejs/prints';
+import { getLibPath, getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
 
 const CommonFiles = [
   'tsconfig.json',

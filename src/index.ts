@@ -2,14 +2,14 @@
 
 import yargs from 'yargs/yargs';
 import chalk from 'chalk';
+import { getProcess } from '@pandazy/mole-core/dist/nodejs/globals';
+import { print } from '@pandazy/mole-core/dist/nodejs/prints';
 import { readInit } from './init-config';
-import { getProcess } from './lib/global-helpers';
 import { ProjectType } from './project-helpers';
 import buildStarterKit from './build-starter-kit';
 import runCommand from './run-command';
 import initializeSettings from './initialize-settings';
 import getVersion from './get-version';
-import { print } from './lib/print-helpers';
 
 type MoleMode = 'new' | 'run' | 'update';
 

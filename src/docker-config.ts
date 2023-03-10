@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import dotenv from 'dotenv';
+import { print } from '@pandazy/mole-core/dist/nodejs/prints';
 import { runDocker } from './lib/run-docker';
-import { print } from './lib/print-helpers';
 import { PandazyConfig, readPandazyConf, writePandazyConf } from './config-utils';
 
 const ConfName = 'docker';

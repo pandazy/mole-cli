@@ -1,8 +1,8 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
+import { exists, getLibPath, getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
+import { getProcess } from '@pandazy/mole-core/dist/nodejs/globals';
 import { ProjectType } from './project-helpers';
-import { exists, getLibPath, getUserPath } from './lib/file-helpers';
-import { getProcess } from './lib/global-helpers';
 
 function makeProject(name: string): string {
   const projectPath = getUserPath(name);

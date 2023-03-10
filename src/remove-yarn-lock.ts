@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import { print } from './lib/print-helpers';
-import { removeUserFile } from './lib/file-helpers';
+import { print } from '@pandazy/mole-core/dist/nodejs/prints';
+import { removeUserFile } from '@pandazy/mole-core/dist/nodejs/files';
 
 export default function removeYarnLock(): void {
   removeUserFile({

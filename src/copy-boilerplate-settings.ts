@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
+import { print } from '@pandazy/mole-core/dist/nodejs/prints';
+import { getLibDir } from '@pandazy/mole-core/dist/nodejs/globals';
+import { exists, getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
 import { BoilerplateType, ProjectType } from './project-helpers';
-import { print } from './lib/print-helpers';
-import { getLibDir } from './lib/global-helpers';
-import { exists } from './lib/file-helpers';
 
 const CodeDirName = getLibDir();
 
-const destDir = path.resolve(process.cwd());
+const destDir = getUserPath('.');
 
 export type PackName = ProjectType | 'common';
 

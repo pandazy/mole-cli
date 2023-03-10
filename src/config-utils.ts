@@ -5,7 +5,7 @@ import {
   readUserFile,
   removeUserFile,
   writeUserFile,
-} from './lib/file-helpers';
+} from '@pandazy/mole-core/dist/nodejs/files';
 
 const ROOT = './.pandazy';
 
