@@ -1,7 +1,11 @@
 import chalk from 'chalk';
-import { extractForUserScripts, PackageJSON } from '@pandazy/mole-core/dist/nodejs/package-json';
-import { print } from '@pandazy/mole-core/dist/nodejs/prints';
-import { readUserFile, writeUserFile } from '@pandazy/mole-core/dist/nodejs/files';
+import {
+  extractForUserScripts,
+  PackageJSON,
+  print,
+  readUserFile,
+  writeUserFile,
+} from '@pandazy/mole-core/dist/nodejs';
 import { ProjectType } from './project-helpers';
 import extractUserDeps from './extract-user-deps';
 import readProviderPackageJSON from './read-provider-package-json';

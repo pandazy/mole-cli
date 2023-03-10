@@ -800,10 +800,10 @@
   resolved "https://npm.pkg.github.com/download/@pandazy/mole-config/0.1.10/097d1b15e0526517e166bcd112379206b9a6f32c#097d1b15e0526517e166bcd112379206b9a6f32c"
   integrity sha512-4fW9jZzzSMjFjvGxFYt3PS6z7KuZ/POJernoBOSB1qzxEZlWaV/377vofucEYEe5FxMnbc3a6nlffmYymrJO5w==
 
-"@pandazy/mole-core@^2.1.0":
-  version "2.1.0"
-  resolved "https://npm.pkg.github.com/download/@pandazy/mole-core/2.1.0/06c9f2c32ade8d833a6745baedb1ea4f76aa50f0#06c9f2c32ade8d833a6745baedb1ea4f76aa50f0"
-  integrity sha512-oTyyMRKAupjFYPtcke1RN1sYUXZW8EZlThD2u3n0lEl6vHeVKgnHLiG7a+XMsfjMKABOnDiva+A0yfh6EACZCw==
+"@pandazy/mole-core@^2.1.1":
+  version "2.1.1"
+  resolved "https://npm.pkg.github.com/download/@pandazy/mole-core/2.1.1/ea015532485e8f333424e6d994c2bb1a648aa64e#ea015532485e8f333424e6d994c2bb1a648aa64e"
+  integrity sha512-VhPyNsHHEpXvmF+8fAKXekY6DuzfsEagyXbPKXs1NuHqbEM+XhGxJUFMWYNGCYK/7iB30i6w0oge5aaCJ9DZ8w==
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.24"

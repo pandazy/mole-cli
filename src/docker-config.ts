@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import dotenv from 'dotenv';
-import { print } from '@pandazy/mole-core/dist/nodejs/prints';
+import { print } from '@pandazy/mole-core/dist/nodejs';
 import { runDocker } from './lib/run-docker';
 import { PandazyConfig, readPandazyConf, writePandazyConf } from './config-utils';
 

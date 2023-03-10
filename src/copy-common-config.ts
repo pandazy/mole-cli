@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 import fs from 'fs';
-import { print } from '@pandazy/mole-core/dist/nodejs/prints';
-import { getUserPath } from '@pandazy/mole-core/dist/nodejs/files';
+import { print , getUserPath } from '@pandazy/mole-core/dist/nodejs';
 import { getProviderPath } from './lib/files';
 
 const CommonFiles = [

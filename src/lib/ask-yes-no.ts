@@ -1,6 +1,6 @@
 import readline from 'readline';
 import chalk from 'chalk';
-import { getProcess } from '@pandazy/mole-core/dist/nodejs/globals';
+import { getProcess } from '@pandazy/mole-core/dist/nodejs';
 
 export default function askYesNo(question: string): Promise<boolean> {
   const rl = readline.createInterface({

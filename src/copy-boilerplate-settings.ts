@@ -1,7 +1,6 @@
 import fs from 'fs';
 import chalk from 'chalk';
-import { print } from '@pandazy/mole-core/dist/nodejs/prints';
-import { exists, getUserPath, pathResolve } from '@pandazy/mole-core/dist/nodejs/files';
+import { print , exists, getUserPath, pathResolve } from '@pandazy/mole-core/dist/nodejs';
 import { getProviderPath } from './lib/files';
 import { BoilerplateType, ProjectType } from './project-helpers';
 

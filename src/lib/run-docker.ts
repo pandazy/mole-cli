@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 import { execSync } from 'child_process';
-import { print } from '@pandazy/mole-core/dist/nodejs/prints';
-import { getUserPath, getUserRepoName } from '@pandazy/mole-core/dist/nodejs/files';
+import { print, getUserPath, getUserRepoName } from '@pandazy/mole-core/dist/nodejs';
 
 export const NodeModuleVolume = `mole_${getUserRepoName()}_node_modules`;
 

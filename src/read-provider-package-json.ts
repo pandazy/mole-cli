@@ -1,4 +1,4 @@
-import { PackageJSON } from '@pandazy/mole-core/dist/nodejs/package-json';
+import { PackageJSON } from '@pandazy/mole-core/dist/nodejs';
 import { readProviderFile } from './lib/files';
 
 /**

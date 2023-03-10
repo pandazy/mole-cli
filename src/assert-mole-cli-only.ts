@@ -1,4 +1,4 @@
-import { readUserPackageJSON } from '@pandazy/mole-core/dist/nodejs/package-json';
+import { readUserPackageJSON } from '@pandazy/mole-core/dist/nodejs';
 
 const packageJSON = readUserPackageJSON();
 

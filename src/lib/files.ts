@@ -1,4 +1,4 @@
-import { justRead } from '@pandazy/mole-core/dist/nodejs/files';
+import { justRead } from '@pandazy/mole-core/dist/nodejs';
 import path from 'path';
 import getModuleRoot from './module-root';
 
