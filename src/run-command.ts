@@ -1,4 +1,4 @@
-import { hasHusky, HuskyInsScript } from 'lib/husky-helper';
+import { hasHusky, HuskyInsScript } from './lib/husky-helper';
 import { ProjectType } from './project-helpers';
 import { runDockerWithPandazyConfig } from './docker-config';
 import askYesNo from './lib/ask-yes-no';
