@@ -13,7 +13,6 @@
   "scripts": {
     "test": "jest --coverage",
     "chmodx": "chmod +x dist/chmodx.run.js && mole-chmodx",
-    "tar:husky": "tar -czf husky.tgz .husky",
     "build": "rm -rf dist && tsc --build tsconfig.build.json && yarn chmodx && mole-taroot && mole-tarkit",
     "clean": "rm -rf coverage",
     "test:clear-cache": " jest --clearCache",
