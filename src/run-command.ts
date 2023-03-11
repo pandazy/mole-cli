@@ -1,4 +1,3 @@
-import { hasHusky, HuskyInsScript } from './lib/husky-helper';
 import { ProjectType } from './project-helpers';
 import { runDockerWithPandazyConfig } from './docker-config';
 import askYesNo from './lib/ask-yes-no';
@@ -16,9 +15,7 @@ interface RunCommandOptions {
 export default async function runCommand(cmd: string, options: RunCommandOptions): Promise<void> {
   const { isNew, projectType, skipPackageCheck } = options;
   const foundYarnLock = hasYarnLock();
-  const addPackScript = `yarn --dev add ${DevDepsMole.join(' ')} ${
-    hasHusky() ? '' : `&& ${HuskyInsScript}`
-  }`;
+  const addPackScript = `git init -q && yarn --dev add ${DevDepsMole.join(' ')}`;
   const cmdSuffix = cmd ? `&& ${cmd}` : '';
   const runAll = `${addPackScript} ${cmdSuffix}`;
 
