@@ -14,11 +14,10 @@
     "build": "rm -rf dist && tsc --build tsconfig.build.json && yarn chmodx",
     "clean": "rm -rf coverage",
     "test:clear-cache": " jest --clearCache",
-    "prepare": "husky install",
     "test:prepare": "yarn lint && yarn clean && yarn test:clear-cache",
     "test:new": "yarn test:prepare && yarn test",
     "lint": "prettier --write src/*.ts src/**/*.ts && yarn eslint 'src/**' --ext .ts,.tsx --fix",
-    "release": " yarn build && yarn lint && yarn clean && yarn test && yarn publish && git clean -fd"
+    "release": "yarn build && yarn lint && yarn clean && yarn test && yarn publish && git clean -fd"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

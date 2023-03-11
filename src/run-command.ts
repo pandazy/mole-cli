@@ -17,7 +17,7 @@ export default async function runCommand(cmd: string, options: RunCommandOptions
   const { isNew, projectType, skipPackageCheck } = options;
   const foundYarnLock = hasYarnLock();
   const addPackScript = `yarn --dev add ${DevDepsMole.join(' ')} ${
-    hasHusky() ? '' : HuskyInsScript
+    hasHusky() ? '' : `&& ${HuskyInsScript}`
   }`;
   const cmdSuffix = cmd ? `&& ${cmd}` : '';
   const runAll = `${addPackScript} ${cmdSuffix}`;
