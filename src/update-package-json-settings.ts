@@ -41,10 +41,6 @@ function updateScripts(packageJSON: PackageJSON): PackageJSON {
 function updateGitHooks(packageJSON: PackageJSON): PackageJSON {
   return {
     ...packageJSON,
-    husky: {
-      ...(packageJSON.husky ?? {}),
-      ...(CodePackageJSON.husky ?? {}),
-    },
     'lint-staged': {
       ...(packageJSON['lint-staged'] ?? {}),
       ...(CodePackageJSON['lint-staged'] ?? {}),
