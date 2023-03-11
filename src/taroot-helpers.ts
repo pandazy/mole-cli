@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { tar, untar } from './lib/tar-helpers';
+import { getUserPath, tar, untar } from '@pandazy/mole-core/dist/nodejs';
 import { getProviderPath } from './lib/files';
 
 const ProviderPath = getProviderPath('dist', 'taroot.tar.gz');
@@ -23,5 +23,5 @@ export function tarRoot(): void {
 }
 
 export function untarRoot(): void {
-  untar(ProviderPath);
+  untar(ProviderPath, getUserPath('.'));
 }

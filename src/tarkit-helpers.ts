@@ -1,6 +1,5 @@
-import { getProcess, getUserPath } from '@pandazy/mole-core/dist/nodejs';
+import { getProcess, getUserPath, tar, untar } from '@pandazy/mole-core/dist/nodejs';
 import { ProjectType } from 'project-helpers';
-import { tar, untar } from './lib/tar-helpers';
 import { getProviderPath } from './lib/files';
 
 const ProviderPathMap: Record<ProjectType, string> = Object.fromEntries(
