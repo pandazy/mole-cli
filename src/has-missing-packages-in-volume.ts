@@ -6,7 +6,7 @@ import { getDevDeps } from './dep-list-constant';
 const ConfName = '_node_modules';
 const ModuleListingCmd = 'mole-modules';
 
-function getNodeModulesInVolume(): string[] {
+function getAllNodeModulesInVolume(): string[] {
   // print node_modules in volume and save it to pandazy conf and read it
   // because the stdout of the container is not TTY
   execSync(ModuleListingCmd, { stdio: 'inherit' });
@@ -20,7 +20,7 @@ function getNodeModulesInVolume(): string[] {
 }
 
 export default function hasMissingPackagesInVolume(projectType: ProjectType): boolean {
-  const volumePackages = getNodeModulesInVolume();
+  const volumePackages = getAllNodeModulesInVolume();
   const deps = getDevDeps(projectType);
   return deps.some((dep) => !volumePackages.includes(dep));
 }

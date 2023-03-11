@@ -10,5 +10,5 @@ assertMoleCliOnly();
 
 (['lib', 'webui'] as ProjectType[]).forEach((projectType) => {
   tarKit(projectType);
-  print(chalk.blue(`Starter kit (${projectType} archived.`));
+  print(chalk.blue(`Starter kit [${projectType}] archived.`));
 });
