@@ -1,5 +1,6 @@
 # vscode settings
 .vscode
+.husky
 
 # Logs
 logs
@@ -15,6 +16,9 @@ tsconfig.build.json
 # Test settings
 jest.config.js
 jest.config.ts
+
+.eslintignore
+.eslintrc.js
 
 .prettierrc
 .prettierrc.js
