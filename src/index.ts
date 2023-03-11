@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import { getProcess, print } from '@pandazy/mole-core/dist/nodejs';
 import { readInit } from './init-config';
 import { ProjectType } from './project-helpers';
-import buildStarterKit from './build-starter-kit';
+import newRepo from './new-repo';
 import runCommand from './run-command';
 import initializeSettings from './initialize-settings';
 import getVersion from './get-version';
@@ -121,7 +121,7 @@ internalUseChecklist.forEach(([option, triggerMode, canConfirm]) => {
 const RunMap: Record<MoleMode, () => void> = {
   new: () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    buildStarterKit(command as string, tArgv.pt ?? 'lib');
+    newRepo(command as string, tArgv.pt ?? 'lib');
   },
   run: () => {
     const projectType = readInit()?.projectType;

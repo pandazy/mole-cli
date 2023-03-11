@@ -9,7 +9,7 @@ function makeProject(name: string): string {
   return projectPath;
 }
 
-export default async function buildStarterKit(
+export default async function newRepo(
   projectName: string,
   projectType: ProjectType
 ): Promise<void> {
