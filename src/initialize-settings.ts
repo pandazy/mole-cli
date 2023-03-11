@@ -1,11 +1,10 @@
 import chalk from 'chalk';
 import { print } from '@pandazy/mole-core/dist/nodejs';
+import { untarRoot } from './taroot-helpers';
 import copyHusky from './copy-husky';
 import { readInit, writeInit } from './init-config';
 import { writeHandsoff } from './handsoff-config';
 import { ProjectType } from './project-helpers';
-import copyCommonConfig from './copy-common-config';
-import copyBoilerplateSettings from './copy-boilerplate-settings';
 import updatePackageJSONSettings from './update-package-json-settings';
 import removeYarnLock from './remove-yarn-lock';
 import { writeDocker } from './docker-config';
@@ -38,9 +37,7 @@ export default function initializeSettings({ projectType, projectName }: InitOpt
 
   const syncedProjectType = syncSavedProjectType(projectType);
   print(chalk.gray(`Project type:${syncedProjectType}`));
-  copyCommonConfig();
-  copyBoilerplateSettings('common');
-  copyBoilerplateSettings(syncedProjectType);
+  untarRoot();
   removeYarnLock();
   updatePackageJSONSettings(syncedProjectType, projectName);
   writeHandsoff();

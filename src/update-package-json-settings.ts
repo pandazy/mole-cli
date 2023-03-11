@@ -6,6 +6,7 @@ import {
   readUserFile,
   writeUserFile,
 } from '@pandazy/mole-core/dist/nodejs';
+import { ConvertAmong } from '@pandazy/mole-core/dist/types';
 import { ProjectType } from './project-helpers';
 import extractUserDeps from './extract-user-deps';
 import readProviderPackageJSON from './read-provider-package-json';
@@ -22,17 +23,18 @@ function updateNPMRegistry(packageJSON: PackageJSON): PackageJSON {
   };
 }
 
-function replaceChmodx(script: string): string {
-  return script.replaceAll(' && yarn chmodx', '');
+function makeSectionRemover(target: string): ConvertAmong<string> {
+  return (script: string) => script.replaceAll(target, '');
 }
 
 function updateScripts(packageJSON: PackageJSON): PackageJSON {
   return {
     ...packageJSON,
     scripts: extractForUserScripts(CodePackageJSON, {
-      excludes: new Set(['chmodx']),
+      excludes: new Set(['chmodx', 'tar:husky']),
       specials: {
-        build: replaceChmodx,
+        build: makeSectionRemover(' && yarn chmodx && mole-taroot && mole-tarkit'),
+        release: makeSectionRemover('yarn tar:husky && '),
       },
     }),
   };
