@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 import { print } from '@pandazy/mole-core/dist/nodejs';
 import { untarRoot } from './taroot-helpers';
-import copyHusky from './copy-husky';
 import { readInit, writeInit } from './init-config';
 import { writeHandsoff } from './handsoff-config';
 import { ProjectType } from './project-helpers';
@@ -42,5 +41,4 @@ export default function initializeSettings({ projectType, projectName }: InitOpt
   updatePackageJSONSettings(syncedProjectType, projectName);
   writeHandsoff();
   writeDocker();
-  copyHusky();
 }
