@@ -14,7 +14,6 @@
     "test": "jest --coverage",
     "chmodx": "chmod +x dist/chmodx.run.js && mole-chmodx",
     "tar:husky": "tar -czf husky.tgz .husky",
-    "postpublish": "tar -xzf husky.tgz && rm husky.tgz && mv .husky .git/hooks",
     "build": "rm -rf dist && tsc --build tsconfig.build.json && yarn chmodx && mole-taroot && mole-tarkit",
     "clean": "rm -rf coverage",
     "test:clear-cache": " jest --clearCache",
