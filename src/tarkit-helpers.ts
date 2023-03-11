@@ -1,4 +1,4 @@
-import { getProcess } from '@pandazy/mole-core/dist/nodejs';
+import { getProcess, getUserPath } from '@pandazy/mole-core/dist/nodejs';
 import { ProjectType } from 'project-helpers';
 import { tar, untar } from './lib/tar-helpers';
 import { getProviderPath } from './lib/files';
@@ -16,5 +16,5 @@ export function tarKit(projectType: ProjectType): void {
 }
 
 export function untarKit(projectType: ProjectType): void {
-  untar(ProviderPathMap[projectType]);
+  untar(ProviderPathMap[projectType], getUserPath('.'));
 }
