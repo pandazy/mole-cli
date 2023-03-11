@@ -1,6 +1,6 @@
 {
   "name": "@pandazy/mole-cli",
-  "version": "0.6.24",
+  "version": "0.6.25",
   "description": "Shell command helpers",
   "main": "./dist/index.js",
   "bin": {
