@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import { ProjectType } from './project-helpers';
 import { runDockerWithPandazyConfig } from './docker-config';
 import askYesNo from './lib/ask-yes-no';
@@ -10,23 +11,42 @@ interface RunCommandOptions {
   isNew?: boolean;
   projectType: ProjectType;
   skipPackageCheck?: boolean;
+  noDocker?: boolean;
+}
+
+function runPureCommand(cmd: string): void {
+  execSync(cmd, { stdio: 'inherit' });
+}
+
+function makeRun(noDocker?: boolean): (cmd: string) => void {
+  return (cmd: string): void => {
+    if (noDocker) {
+      runPureCommand(cmd);
+      return;
+    }
+
+    runDockerWithPandazyConfig(cmd);
+  };
 }
 
 export default async function runCommand(cmd: string, options: RunCommandOptions): Promise<void> {
-  const { isNew, projectType, skipPackageCheck } = options;
+  console.warn('nodocker?', options.noDocker);
+  const { isNew, projectType, skipPackageCheck, noDocker } = options;
   const foundYarnLock = hasYarnLock();
   const addPackScript = `git init -q && yarn --dev add ${DevDepsMole.join(' ')}`;
   const cmdSuffix = cmd ? `&& ${cmd}` : '';
   const runAll = `${addPackScript} ${cmdSuffix}`;
 
+  const run = makeRun(noDocker);
+
   if (isNew) {
     removeYarnLock();
-    runDockerWithPandazyConfig(runAll);
+    run(runAll);
     return Promise.resolve();
   }
 
   if (skipPackageCheck || (foundYarnLock && !hasMissingPackagesInVolume(projectType))) {
-    runDockerWithPandazyConfig(cmd);
+    run(cmd);
     return Promise.resolve();
   }
 
@@ -35,10 +55,10 @@ export default async function runCommand(cmd: string, options: RunCommandOptions
   );
   if (isConfirmed) {
     removeYarnLock();
-    runDockerWithPandazyConfig(runAll);
+    run(runAll);
     return Promise.resolve();
   }
 
-  runDockerWithPandazyConfig(cmd);
+  run(cmd);
   return Promise.resolve();
 }

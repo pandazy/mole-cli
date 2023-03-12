@@ -9,12 +9,33 @@ function makeProject(name: string): string {
   return projectPath;
 }
 
-export default async function newRepo(
-  projectName: string,
-  projectType: ProjectType
-): Promise<void> {
-  makeProject(projectName);
-  getProcess().chdir(projectName);
-  untarKit(projectType);
-  execSync(`mole update --pt ${projectType} -n ${projectName}`, { stdio: 'inherit' });
+function startNewProject(projectName: string): void {
+  execSync(`npx gatsby new ${projectName}`, { stdio: 'inherit' });
+}
+
+const ProjectMakerMap: Record<ProjectType, (projectName: string) => void> = {
+  lib: makeProject,
+  webui: startNewProject,
+  srv: () => {
+    throw new Error('Not implemented');
+  },
+};
+
+export interface NewRepoOptions {
+  name: string;
+  type: ProjectType;
+  noDocker?: boolean;
+}
+
+export default async function newRepo({ name, type, noDocker }: NewRepoOptions): Promise<void> {
+  ProjectMakerMap[type](name);
+  getProcess().chdir(name);
+  if (type === 'lib') {
+    untarKit('lib');
+  }
+
+  const noDockerOption = noDocker ? [' --noDocker'] : [];
+  execSync(['mole update', `--pt ${type}`, `-n ${name}`, ...noDockerOption].join(' '), {
+    stdio: 'inherit',
+  });
 }

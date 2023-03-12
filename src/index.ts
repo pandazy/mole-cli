@@ -65,6 +65,11 @@ const idxYargs = yargs(realArgs)
     describe: '[internal] the project name, reserved for initializing a new project',
     alias: 'name',
   })
+  .option('nd', {
+    type: 'boolean',
+    describe: 'run commands directly instead of in a docker container',
+    alias: 'noDocker',
+  })
   .option('spc', {
     type: 'boolean',
     default: false,
@@ -99,6 +104,7 @@ if (!mode || !(mode in ArgvGenMap)) {
 const tArgv = argv as unknown as {
   pt: ProjectType;
   skipPackageCheck?: boolean;
+  noDocker?: boolean;
   n?: string;
 };
 
@@ -121,7 +127,11 @@ internalUseChecklist.forEach(([option, triggerMode, canConfirm]) => {
 const RunMap: Record<MoleMode, () => void> = {
   new: () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    newRepo(command as string, tArgv.pt ?? 'lib');
+    newRepo({
+      name: command as string,
+      type: tArgv.pt ?? 'lib',
+      noDocker: tArgv.noDocker,
+    });
   },
   run: () => {
     const projectType = readInit()?.projectType;
@@ -135,6 +145,7 @@ const RunMap: Record<MoleMode, () => void> = {
     runCommand(command as string, {
       skipPackageCheck: tArgv.skipPackageCheck,
       projectType,
+      noDocker: tArgv.noDocker,
     });
   },
   update: () => {
@@ -146,6 +157,7 @@ const RunMap: Record<MoleMode, () => void> = {
     runCommand('', {
       isNew: true,
       projectType: tArgv.pt,
+      noDocker: tArgv.noDocker,
     });
   },
 };

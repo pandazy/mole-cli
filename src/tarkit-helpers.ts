@@ -1,19 +1,22 @@
 import { getProcess, getUserPath, tar, untar } from '@pandazy/mole-core/dist/nodejs';
+import { fromEntries } from '@pandazy/mole-core';
 import { ProjectType } from 'project-helpers';
 import { getProviderPath } from './lib/files';
 
-const ProviderPathMap: Record<ProjectType, string> = Object.fromEntries(
-  (['lib', 'webui', 'srv'] as ProjectType[]).map((projectType) => [
+export type TarkitType = Exclude<ProjectType, 'webui'>;
+
+const ProviderPathMap: Record<TarkitType, string> = fromEntries<string>(
+  (['lib', 'srv'] as TarkitType[]).map((projectType) => [
     projectType,
     getProviderPath('dist', `tarkit-${projectType}.tar.gz`),
   ])
-) as Record<ProjectType, string>;
+) as Record<TarkitType, string>;
 
-export function tarKit(projectType: ProjectType): void {
+export function tarKit(projectType: TarkitType): void {
   getProcess().chdir(getProviderPath('mole-kit', projectType));
   tar(ProviderPathMap[projectType], './');
 }
 
-export function untarKit(projectType: ProjectType): void {
+export function untarKit(projectType: TarkitType): void {
   untar(ProviderPathMap[projectType], getUserPath('.'));
 }
